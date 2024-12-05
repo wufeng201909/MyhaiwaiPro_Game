@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name" translatable="false">goplay</string>
+
+    <!--1385948921593501-->
+    <string name="pg_facebook_login_id" translatable="false">236275795131913</string>
+    <string name="pg_google_login_id" translatable="false">667526302735-383dasd18v71mk8ljd8q73fdr6186qhi.apps.googleusercontent.com</string>
+
+    <string name="facebook_app_id" translatable="false">236275795131913</string> <!--459372049308577-->
+    <string name="fb_login_protocol_scheme" translatable="false">84dd2ce9419a466562095772575646cc</string>
+    <string name="facebook_client_token" translatable="false">8be7e094da9aaea1b4f479ad26e4463a</string>
+
+    <string name="wemix_clientId" translatable="false">100-abcdefghijklmn.apps.wemixnetwork.com</string>
+    <string name="wemix_scheme" translatable="false">wemix100-abcdefghijklmn</string>
+
+    <string name="default_notify_channel_id" translatable="false">test</string>
+    <string name="default_notify_channel_name" translatable="false">myludo</string>
+    <string name="REFRESH_TOKEN_BROADCAST_ACTION" translatable="false">myludo</string>
+    <!--是否使用新登录ui -->
+    <string name="myths_loginui_new" translatable="false">true</string>
+    <!--是否使用新vk登录 -->
+    <string name="vk_sdk_isnew" translatable="false">true</string>
+    <!--是否使用游客绑定功能 -->
+    <string name="myths_yk_usebind" translatable="false">true</string>
+</resources>

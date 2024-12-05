@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "667526302735",
+    "project_id": "msbdmyludo",
+    "storage_bucket": "msbdmyludo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:667526302735:android:390f06b40fdede486f677a",
+        "android_client_info": {
+          "package_name": "com.msbdmy.goludo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "667526302735-cf53cvvdbdhbrfdhm882sorpq1ugrtkn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDK-SZYFkS6aUfV5mqlBadboPngUapJ_qU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "667526302735-cf53cvvdbdhbrfdhm882sorpq1ugrtkn.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "667526302735-b264nlcr5joe3baf2bjvo96cv7f5onap.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.msbdmy.goludo"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

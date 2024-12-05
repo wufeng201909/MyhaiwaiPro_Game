@@ -1,0 +1,6 @@
+include ':app', ':mysdklibrary', ':adjust_purchase',':MyOtherLib'
+rootProject.name='MyhaiwaiApplication_overseas'
+include ':honorsdk_demo'
+include ':walletdemo_v2'
+include ':mylibrary_huawei'
+include ':IAP6Helper'

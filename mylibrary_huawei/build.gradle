@@ -1,0 +1,103 @@
+plugins {
+    id 'com.android.library'
+}
+
+android {
+    namespace 'com.sdk.mylibrary_huawei'
+    compileSdk 33
+
+    defaultConfig {
+        minSdk 23
+        targetSdk 32
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    buildToolsVersion '33.0.2'
+
+}
+
+dependencies {
+
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.9.0'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+    api fileTree(dir: 'libs', include: ['*.jar','*.aar'])
+    //华为
+    api 'com.huawei.hms:hwid:6.11.0.300'
+    api 'com.huawei.hms:iap:6.10.0.300'
+    api 'com.huawei.hms:game:6.10.0.300'
+//    implementation 'com.huawei.hms:hianalytics:6.10.0.302'
+
+    //小米
+    api "com.xiaomi.billingclient:billing:1.1.2"
+    //vk-旧
+    api "com.vk:vksdk-pub:0.109-24422"
+    api "com.vk:oauth-vk:0.109-24422"
+    //vk-新
+    api "com.vk.id:vkid:1.2.0"
+
+    //tradplus
+    // TradPlus
+    api 'androidx.legacy:legacy-support-v4:1.0.0'
+    //TradPlus
+    api 'com.tradplusad:tradplus:9.9.0.1'
+    // Cross Promotion
+    api 'com.tradplusad:tradplus-crosspromotion:27.9.9.0.1'
+    // Huawei
+    api 'com.tradplusad:tradplus-huawei:41.9.9.0.1'
+    api 'com.huawei.hms:ads-lite:13.4.62.302'
+    // Adx
+    api 'com.google.code.gson:gson:2.8.6'
+    api 'com.tradplusad:tp_exchange:40.9.9.0.1'
+    api 'com.tradplusad:om-sdk:1.4.4'
+
+    //applovin
+    api 'com.applovin:applovin-sdk:+'
+//    implementation 'com.applovin.mediation:mintegral-adapter:+'
+//    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+//    implementation 'com.applovin.mediation:mytarget-adapter:+'
+//    implementation 'com.applovin.mediation:unityads-adapter:+'
+//    implementation 'com.applovin.mediation:yandex-adapter:+'
+
+    //topon
+    //Anythink (Necessary)
+    api "com.anythink.sdk:core:6.3.01"
+    api "com.anythink.sdk:nativead:6.3.01"
+    api "com.anythink.sdk:banner:6.3.01"
+    api "com.anythink.sdk:interstitial:6.3.01"
+    api "com.anythink.sdk:rewardedvideo:6.3.01"
+    api "com.anythink.sdk:splash:6.3.01"
+    //Tramini
+    api "com.anythink.sdk:tramini-plugin:6.3.01"
+}
+//vk-旧
+//android.defaultConfig.manifestPlaceholders = [
+//        'VkExternalAuthRedirectScheme' : 'vk51703714',
+//        'VkExternalAuthRedirectHost' : 'vk.com',
+//]
+//vk-xin
+android.defaultConfig.manifestPlaceholders = [
+        "VKIDRedirectHost" : "vk.com" , // Usually vk.com is specified.
+        "VKIDRedirectScheme" : "vk1233445" , // Specifies vk{Application ID}.
+        "VKIDClientID" : "1233445" ,
+        "VKIDClientSecret" : "clientSecret"
+]
+//若三方应用市场（例如Google Play）禁止您的应用引导下载其他应用时，需要删除SDK中引导下载安装HMS Core（APK）的能力，请完成如下配置
+//configurations {
+//    all*.exclude group: 'com.huawei.hms', module: 'hmscoreinstaller'
+//}

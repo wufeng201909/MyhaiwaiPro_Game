@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="transparent_bg">#30000000</color><!--#00-99取值，表示透明-不透明范围 -->
+    <color name="gray">#fafafa</color>
+    <color name="gray2">#d3d7d4</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#4c4c4c</color>
+    <color name="orange">#faa24b</color>
+    <color name="green">#4eaf94</color>
+    <color name="red">#fa684b</color>
+    <color name="myths_login_log">#b8632f</color>
+    <color name="myths_login_black">#212121</color>
+    <color name="myths_login_tips">#df995c</color>
+    <color name="myths_login_change">#595959</color>
+</resources>

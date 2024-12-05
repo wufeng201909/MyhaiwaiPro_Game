@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/transparent">
+
+  <ImageView
+      android:id="@+id/cancel_payermax"
+      android:layout_width="36dp"
+      android:layout_height="36dp"
+      android:layout_marginEnd="@dimen/margin_10"
+      android:layout_gravity="end"
+      android:src="@drawable/myths_cancle_new"/>
+
+  <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:layout_weight="1"
+      android:background="@color/white">
+      <WebView
+          android:id="@+id/webview_payermax"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:background="@color/white"/>
+      <ImageView
+          android:id="@+id/webview_load"
+          android:layout_width="@dimen/margin_top"
+          android:layout_height="@dimen/margin_top"
+          android:layout_centerInParent="true"
+          android:background="@drawable/myths_load"/>
+  </RelativeLayout>
+
+
+</LinearLayout>

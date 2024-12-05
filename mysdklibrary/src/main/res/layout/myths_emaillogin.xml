@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center">
+
+    <RelativeLayout
+        android:layout_width="336dp"
+        android:layout_height="236dp"
+        android:background="@drawable/myths_rus_bg" >
+        <TextView
+            android:id="@+id/myths_log_elogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="6dp"
+            android:text="@string/myths_login_email"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/myths_login_log" />
+        <LinearLayout
+            android:id="@+id/lay_cancle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/myths_log_elogin"
+            android:layout_alignBottom="@+id/myths_log_elogin"
+            android:gravity="end|center_vertical">
+
+            <TextView
+                android:id="@+id/myths_cancle"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:layout_marginEnd="@dimen/margin_15"
+                android:background="@drawable/myths_rus_close" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/acc_lay"
+            android:layout_width="250dp"
+            android:layout_height="30dp"
+            android:layout_below="@+id/lay_cancle"
+            android:layout_marginTop="40dp"
+            android:layout_centerHorizontal="true"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:background="@drawable/myths_et1">
+
+            <EditText
+                android:id="@+id/ed_acc"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/margin_15"
+                android:layout_marginEnd="@dimen/margin_15"
+                android:inputType="text"
+                android:maxLines="1"
+                android:textSize="12sp"
+                android:textColorHint="@color/myths_login_black"
+                android:textColor="@color/myths_login_black"
+                android:hint="@string/myths_email_hint_acc"
+                android:background="@android:color/transparent"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_getCode"
+            android:layout_width="89dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="@dimen/margin_15"
+            android:layout_below="@+id/acc_lay"
+            android:layout_alignEnd="@+id/acc_lay"
+            android:gravity="center"
+            android:text="@string/myths_getCode"
+            android:textColor="@color/white"
+            android:textSize="11sp"
+            android:background="@drawable/myths_getcode"/>
+        <LinearLayout
+            android:id="@+id/pas_lay"
+            android:layout_below="@+id/acc_lay"
+            android:layout_width="161dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="@dimen/margin_15"
+            android:layout_alignStart="@+id/acc_lay"
+            android:orientation="horizontal"
+            android:background="@drawable/myths_et_s">
+
+            <EditText
+                android:id="@+id/ed_pas"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/margin_15"
+                android:layout_marginEnd="@dimen/margin_10"
+                android:inputType="text"
+                android:maxLines="1"
+                android:textSize="12sp"
+                android:textColorHint="@color/myths_login_black"
+                android:textColor="@color/myths_login_black"
+                android:hint="@string/myths_email_hint_psd"
+                android:background="@android:color/transparent"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/em_login"
+            android:layout_width="250dp"
+            android:layout_height="30dp"
+            android:layout_below="@+id/pas_lay"
+            android:layout_marginTop="@dimen/margin_top30"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/myths_btn_zt"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:textSize="13sp"
+            android:text="@string/myths_login_email"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

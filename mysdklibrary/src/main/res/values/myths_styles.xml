@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+
+    <style name="Bottom_Dialog" parent="android:style/Theme.Dialog">
+
+        <!-- 背景颜色及和透明程度 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!-- 是否去除标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <!-- 是否去除边框 -->
+        <item name="android:windowFrame">@null</item>
+        <!-- 是否浮现在activity之上 -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 是否模糊 -->
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
+
+    <style name="ay_dialog_style" parent="android:Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item> 
+        <item name="android:windowNoTitle">true</item><!--除去title-->
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item> 
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Translucent</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowCloseOnTouchOutside">false</item>
+    </style>
+
+    <style name="ay_fullscreen_style" parent="android:Theme.Light">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item><!--除去title-->
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Translucent</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowCloseOnTouchOutside">false</item>
+    </style>
+
+    <style name="ay_dialog_style_appCompat" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- 导航栏透明 -->
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <!-- 状态栏透明 -->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowNoTitle">true</item><!--除去title-->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowCloseOnTouchOutside">false</item>
+    </style>
+
+    <style name="mythssdk_customdialog_style" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:background">#00000000</item>
+    </style>
+
+    <declare-styleable name="AutoRatioImageView">
+
+        <!-- -ratio 高/宽 -->
+        <attr name="ratio" format="float" />
+        <attr name="prefer" format="integer" />
+    </declare-styleable>
+
+</resources>

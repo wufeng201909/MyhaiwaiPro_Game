@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+<!--    <androidx.core.widget.NestedScrollView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="#7C1818"-->
+<!--         >-->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+
+    <Button
+        android:id="@+id/guestlogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="guestlogin"
+        android:layout_marginTop="5dp"
+
+        android:layout_gravity="center_horizontal"/>
+
+    <Button
+        android:id="@+id/facebooklogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="facebooklogin"
+        android:layout_marginTop="5dp"
+
+        android:layout_gravity="center_horizontal"/>
+    <Button
+        android:id="@+id/autologin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="autologin"
+        android:layout_marginTop="5dp"
+
+        android:layout_gravity="center_horizontal"/>
+    <Button
+        android:id="@+id/login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="openLogin"
+        android:layout_gravity="center_horizontal"/>
+
+    <Button
+        android:id="@+id/userdata"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="submituserdata"
+        android:layout_marginTop="5dp"
+
+        android:layout_gravity="center_horizontal"/>
+    <Button
+        android:id="@+id/share"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="share"
+
+        android:layout_marginTop="5dp"
+        android:layout_gravity="center_horizontal"/>
+    <Button
+        android:id="@+id/pay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="pay_model"
+        android:layout_marginTop="5dp"
+        android:layout_gravity="center_horizontal"/>
+
+    <Button
+        android:id="@+id/bindgoogle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="bindgoolge"
+        android:layout_marginTop="5dp"
+        android:layout_gravity="center_horizontal"/>
+
+    <Button
+        android:id="@+id/bindfacebook"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="bindfacebook"
+        android:layout_marginTop="5dp"
+        android:layout_gravity="center_horizontal"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/ed_phoneN"
+            android:hint="输入手机号码"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/getcode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="获取手机验证码"
+            android:layout_marginTop="5dp"
+            android:layout_gravity="center_horizontal"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/ed_phone"
+            android:hint="输入验证吗"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/unbind"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="unbind"
+        android:layout_marginTop="5dp"
+        android:layout_gravity="center_horizontal"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/ed_phone2"
+            android:hint="输入验证吗"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/bindPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="bindPhone"
+            android:layout_marginTop="5dp"
+            android:layout_gravity="center_horizontal"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/ed_phone4"
+            android:hint="输入验证吗"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+        <EditText
+            android:id="@+id/ed_phone5"
+            android:hint="輸入手機號碼"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/enter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="检测验证吗"
+            android:layout_marginTop="5dp"
+            android:layout_gravity="center_horizontal"/>
+    </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/ed_phone6"
+                    android:hint="输入验证吗"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+             
+                <EditText
+                    android:id="@+id/ed_phone3"
+                    android:hint="1首次登录，2非首次"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+
+            <Button
+                android:id="@+id/loginphone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:text="手机登录" />
+
+        </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/ed_phone7"
+            android:hint="输入验证吗"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+        <EditText
+            android:id="@+id/ed_phone8"
+            android:hint="输入新密码"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+
+    <Button
+        android:id="@+id/changepassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:text="修改密码" />
+
+    </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/ed_phone9"
+                    android:hint="输入验证吗"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+                <EditText
+                    android:id="@+id/ed_phone10"
+                    android:hint="输入新密码"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <Button
+                    android:id="@+id/orgetPassword"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="5dp"
+                    android:text="忘记密码" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/firebase"
+                android:text="firebase上报"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+            <Button
+                android:id="@+id/firebase2"
+                android:text="firebase上报2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+            <Button
+                android:id="@+id/sharebt1"
+                android:text="链接分享"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+                <Button
+                    android:id="@+id/sharebt2"
+                    android:text="图片分享"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/welcome"
+                android:text="邀请"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <Button
+                android:id="@+id/fbmap"
+                android:text="fb上報map"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>

@@ -1,0 +1,94 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.sdk.mysdklibrary">
+
+    <uses-permission android:name="com.android.vending.BILLING" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+<!--    <uses-permission android:name="android.permission.READ_PHONE_STATE" />-->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+<!--    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />-->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <!--适配android 11无法唤起第三方apk-->
+    <queries>
+        <!-- Facebook -->
+        <package android:name="com.facebook.katana" />
+        <package android:name="com.huawei.hwid" />
+    </queries>
+
+
+    <application
+        android:usesCleartextTraffic="true">
+        <uses-library android:name="org.apache.http.legacy" android:required="false" />
+        <activity
+            android:name="com.sdk.mysdklibrary.activity.AutoLoginActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|screenSize"
+            android:theme="@style/ay_dialog_style"/>
+        <activity
+            android:name="com.sdk.mysdklibrary.activity.LoginActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|screenSize"
+            android:theme="@style/ay_dialog_style_appCompat"/>
+        <activity
+            android:name="com.sdk.mysdklibrary.activity.AccLoginActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|screenSize"
+            android:theme="@style/ay_dialog_style"/>
+        <activity
+            android:name="com.sdk.mysdklibrary.activity.EmailLoginActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|screenSize"
+            android:theme="@style/ay_dialog_style"/>
+        <activity
+            android:name="com.sdk.mysdklibrary.activity.PayActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|screenSize"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"/>
+        <activity
+            android:name="com.sdk.mysdklibrary.activity.PayerMayActivty"
+            android:configChanges="orientation|keyboardHidden|navigation|screenSize"
+            android:theme="@style/ay_fullscreen_style"/>
+        <activity
+            android:name="com.sdk.mysdklibrary.activity.YXWebActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|screenSize"
+            android:theme="@style/ay_dialog_style"/>
+        <receiver
+            android:name="com.adjust.sdk.AdjustReferrerReceiver"
+            android:permission="android.permission.INSTALL_PACKAGES"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="com.android.vending.INSTALL_REFERRER" />
+            </intent-filter>
+        </receiver>
+        <!--ONE store支付界面 弹窗popup-->
+<!--        <meta-data-->
+<!--            android:name="iap:view_option"-->
+<!--            android:value="popup" />-->
+<!--        <provider android:authorities="com.facebook.app.FacebookContentProvider{APP_ID}"-->
+<!--            android:name="com.facebook.FacebookContentProvider"-->
+<!--            android:exported="true"/>-->
+
+<!--        <provider android:authorities="com.facebook.app.FacebookContentProvider236275795131913"-->
+<!--            android:name="com.facebook.FacebookContentProvider"-->
+<!--            android:exported="true"/>-->
+
+<!--        <activity-->
+<!--            android:name="com.wemadetree.wemixauth.a2a.ReceiverActivity"-->
+<!--            android:exported="true"-->
+<!--            tools:node="replace">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.VIEW" />-->
+
+<!--                <category android:name="android.intent.category.DEFAULT" />-->
+<!--                <category android:name="android.intent.category.BROWSABLE" />-->
+
+<!--                <data-->
+<!--                    android:host="wemixnetwork.com"-->
+<!--                    android:scheme="@string/wemix_scheme" />-->
+<!--            </intent-filter>-->
+<!--        </activity>-->
+    </application>
+
+<!--    <queries><provider android:authorities="com.facebook.katana.provider.PlatformProvider" /></queries>-->
+</manifest>

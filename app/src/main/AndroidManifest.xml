@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.msbdmy.goludo">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:name="com.sdk.mysdklibrary.MyApplication"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <uses-library android:name="org.apache.http.legacy" android:required="false" />
+        <activity android:name="com.myludo.MainActivity"
+            android:theme="@android:style/Theme.Light.NoTitleBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name="com.myludo.testpayActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"/>
+
+        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
+        <meta-data android:name="com.facebook.sdk.ClientToken" android:value="@string/facebook_client_token"/>
+        <meta-data android:name="com.facebook.sdk.AutoLogAppEventsEnabled"
+            android:value="false"/>
+
+<!--        <receiver android:name="com.appsflyer.SingleInstallBroadcastReceiver" android:exported="true">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="com.android.vending.INSTALL_REFERRER" />-->
+<!--            </intent-filter>-->
+<!--        </receiver>-->
+
+        <service
+            android:name=".NotifyService"
+            android:exported="false"
+            android:directBootAware="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+
+<!--        <service-->
+<!--            android:name=".MyFirebaseMessagingService"-->
+<!--            android:exported="false"-->
+<!--            android:directBootAware="true">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="com.google.firebase.MESSAGING_EVENT"/>-->
+<!--            </intent-filter>-->
+<!--        </service>-->
+
+<!--        <service-->
+<!--            android:name=".MyFirebaseInstanceIDService">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>-->
+<!--            </intent-filter>-->
+<!--        </service>-->
+
+
+        <provider android:authorities="com.facebook.app.FacebookContentProvider236275795131913"
+            android:name="com.facebook.FacebookContentProvider"
+            android:exported="true"/>
+
+
+        <meta-data android:name="com.facebook.sdk.ApplicationId"        android:value="@string/facebook_app_id"/>
+
+    </application>
+
+    <queries><provider android:authorities="com.facebook.katana.provider.PlatformProvider" /></queries>
+</manifest>

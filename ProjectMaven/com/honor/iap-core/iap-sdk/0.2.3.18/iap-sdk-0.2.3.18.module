@@ -1,0 +1,84 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.honor.iap-core",
+    "module": "iap-sdk",
+    "version": "0.2.3.18",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "6.5.1",
+      "buildId": "nl6zzt4tizesbdmy4pchicuprm"
+    }
+  },
+  "variants": [
+    {
+      "name": "outwardReleaseApiPublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "com.honor.iap-core",
+          "module": "iap-sdk-comm",
+          "version": {
+            "requires": "0.2.3.18"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "iap-sdk-0.2.3.18.aar",
+          "url": "iap-sdk-0.2.3.18.aar",
+          "size": 70650,
+          "sha512": "881e2cee69f80c464978ded0249e9d7d852097d1a946fe4efd61ca0e0fa67faf7992bdf73f7ff232c94ad81daeb2a349021d224fb142146e052a0d60baccf593",
+          "sha256": "ad8ecf7a39ad50c21591b26ce6983b686c33c9fd8a760026d046f85db5406036",
+          "sha1": "4f478872f2371d208d4ba42bfa0501fba2384a91",
+          "md5": "9171ba1351ff23d5b50da44c7abc5c7c"
+        }
+      ]
+    },
+    {
+      "name": "outwardReleaseRuntimePublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.appcompat",
+          "module": "appcompat",
+          "version": {
+            "requires": "1.3.1"
+          }
+        },
+        {
+          "group": "com.honor.iap-core",
+          "module": "iap-sdk-comm",
+          "version": {
+            "requires": "0.2.3.18"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "iap-sdk-0.2.3.18.aar",
+          "url": "iap-sdk-0.2.3.18.aar",
+          "size": 70650,
+          "sha512": "881e2cee69f80c464978ded0249e9d7d852097d1a946fe4efd61ca0e0fa67faf7992bdf73f7ff232c94ad81daeb2a349021d224fb142146e052a0d60baccf593",
+          "sha256": "ad8ecf7a39ad50c21591b26ce6983b686c33c9fd8a760026d046f85db5406036",
+          "sha1": "4f478872f2371d208d4ba42bfa0501fba2384a91",
+          "md5": "9171ba1351ff23d5b50da44c7abc5c7c"
+        }
+      ]
+    }
+  ]
+}

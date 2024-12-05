@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/lay_payview">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/gray">
+
+        <LinearLayout
+            android:id="@+id/pay_lay_top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:paddingTop="@dimen/margin_10"
+            android:paddingBottom="@dimen/margin_10"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/pay_lay_cancle"
+                android:layout_width="@dimen/margin_top25"
+                android:layout_height="@dimen/margin_top25"
+                android:layout_marginLeft="@dimen/margin_top"
+                android:background="@drawable/myths_back" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginRight="@dimen/activity_vertical_margin2"
+                android:text="@string/myths_paytitle"
+                android:textColor="@color/black"
+                android:textSize="16sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/pay_lay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/pay_lay_top"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/margin_top30"
+            android:layout_marginBottom="@dimen/margin_top">
+            <ListView
+                android:id="@+id/pay_lay_gridv"
+                android:layout_width="335dp"
+                android:layout_height="match_parent"
+                android:divider="#00000000"
+                android:dividerHeight="@dimen/margin_10"
+                android:scrollbars="none"
+                android:background="@android:color/transparent"
+                android:listSelector="@android:color/transparent"/>
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

@@ -1,0 +1,17 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion '29.0.3'
+
+    defaultConfig {
+        minSdkVersion 19
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.1.2"
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+}

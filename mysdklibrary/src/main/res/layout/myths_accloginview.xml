@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/myths_bg" >
+
+        <LinearLayout
+            android:id="@+id/acc_lay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_50"
+            android:layout_marginRight="@dimen/margin_50"
+            android:layout_marginTop="@dimen/margin_top60"
+            android:layout_centerHorizontal="true"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="@dimen/layout_width"
+                android:layout_height="@dimen/layout_height"
+                android:background="@drawable/myths_acc_icon"/>
+            <EditText
+                android:id="@+id/ed_acc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_right20"
+                android:inputType="text"
+                android:maxLines="1"
+                android:textSize="@dimen/text_size16"
+                android:hint="@string/myths_acc_hint"
+                android:background="@android:color/transparent"/>
+        </LinearLayout>
+        <TextView
+            android:id="@+id/acc_line"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginTop="@dimen/margin_top8"
+            android:layout_marginLeft="@dimen/margin_50"
+            android:layout_marginRight="@dimen/margin_50"
+            android:layout_below="@+id/acc_lay"
+            android:background="@android:color/darker_gray"/>
+        <LinearLayout
+            android:id="@+id/pas_lay"
+            android:layout_below="@+id/acc_line"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_50"
+            android:layout_marginRight="@dimen/margin_50"
+            android:layout_marginTop="@dimen/margin_top25"
+            android:layout_centerHorizontal="true"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="@dimen/layout_width"
+                android:layout_height="@dimen/layout_height"
+                android:background="@drawable/myths_pas_icon"/>
+            <EditText
+                android:id="@+id/ed_pas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_right20"
+                android:inputType="text"
+                android:maxLines="1"
+                android:textSize="@dimen/text_size16"
+                android:hint="@string/myths_pas_hint"
+                android:background="@android:color/transparent"/>
+        </LinearLayout>
+        <TextView
+            android:id="@+id/pas_line"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginTop="@dimen/margin_top8"
+            android:layout_marginLeft="@dimen/margin_50"
+            android:layout_marginRight="@dimen/margin_50"
+            android:layout_below="@+id/pas_lay"
+            android:background="@android:color/darker_gray"/>
+
+        <TextView
+            android:id="@+id/acc_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/pas_line"
+            android:layout_marginTop="@dimen/margin_top25"
+            android:layout_marginLeft="@dimen/margin_50"
+            android:layout_marginRight="@dimen/margin_50"
+            android:background="@drawable/myths_loginbtn"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:text="@string/myths_acc_login"/>
+
+        <TextView
+            android:id="@+id/change_loginway"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/acc_login"
+            android:layout_marginTop="@dimen/margin_top"
+            android:layout_centerHorizontal="true"
+            android:text="@string/myths_change_loginway"
+            android:textColor="@android:color/holo_blue_light"/>
+    </RelativeLayout>
+
+</RelativeLayout>

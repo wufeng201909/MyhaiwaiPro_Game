@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center">
+
+    <RelativeLayout
+        android:layout_width="336dp"
+        android:layout_height="236dp"
+        android:background="@drawable/myths_rus_bg" >
+        <TextView
+            android:id="@+id/auto_log_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:layout_centerHorizontal="true"
+            android:text="@string/myths_login_top"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/myths_login_log">
+
+        </TextView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/auto_log_login"
+            android:layout_alignBottom="@+id/auto_log_login"
+            android:gravity="end|center_vertical">
+            <TextView
+                android:id="@+id/auto_cancle"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:layout_marginEnd="@dimen/margin_15"
+                android:background="@drawable/myths_rus_close"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_lay"
+            android:layout_width="wrap_content"
+            android:layout_height="130dp"
+            android:layout_marginTop="@dimen/margin_50"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/acc_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/myths_account"
+                android:visibility="gone"
+                android:textColor="@android:color/black"/>
+            <TextView
+                android:id="@+id/acc_bind_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/margin_3"
+                android:textSize="@dimen/text_size10"
+                android:visibility="gone"
+                android:text="@string/myths_account_tips1_1"
+                android:textColor="@android:color/holo_blue_light"/>
+            <LinearLayout
+                android:id="@+id/lay_bind"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/margin_3"
+                android:visibility="gone"
+                android:gravity="center_horizontal">
+
+                <LinearLayout
+                    android:id="@+id/lay_fblogin"
+                    android:layout_width="120dp"
+                    android:layout_height="20dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/margin_20"
+                    android:background="@drawable/myths_loginkuang">
+
+                    <TextView
+                        android:layout_width="@dimen/margin_15"
+                        android:layout_height="@dimen/margin_15"
+                        android:background="@drawable/myths_fblogin" />
+
+                    <TextView
+                        android:id="@+id/fblogin_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/padding_5"
+                        android:text="Facebook"
+                        android:textSize="13sp"
+                        android:textColor="@android:color/black" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/lay_gglogin"
+                    android:layout_width="120dp"
+                    android:layout_height="20dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="@dimen/margin_10"
+                    android:paddingLeft="@dimen/margin_20"
+                    android:background="@drawable/myths_loginkuang">
+
+                    <TextView
+                        android:layout_width="@dimen/margin_15"
+                        android:layout_height="@dimen/margin_15"
+                        android:background="@drawable/myths_gglogin" />
+
+                    <TextView
+                        android:id="@+id/fastlogin_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/padding_5"
+                        android:text="Google"
+                        android:textSize="13sp"
+                        android:textColor="@android:color/black" />
+                </LinearLayout>
+
+            </LinearLayout>
+            <TextView
+                android:id="@+id/ll_lay_face"
+                android:layout_width="@dimen/activity_vertical_margin2"
+                android:layout_height="@dimen/activity_vertical_margin2"
+                android:layout_marginTop="@dimen/margin_top25"
+                android:background="@drawable/myths_fblogin" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_10"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/load_log"
+                    android:layout_width="@dimen/activity_horizontal_margin"
+                    android:layout_height="@dimen/activity_horizontal_margin"
+                    android:background="@drawable/myths_load"/>
+                <TextView
+                    android:id="@+id/loading_tips"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:text="@string/myths_account_tips2"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/holo_blue_light"/>
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/change_acc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_10"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/ll_lay"
+            android:layout_marginBottom="@dimen/margin_top10"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:background="@drawable/myths_loginbtn">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/myths_change_jiantou"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/horizontalSpace"
+                android:gravity="center"
+                android:text="@string/myths_account_change"
+                android:textColor="@android:color/white"/>
+
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

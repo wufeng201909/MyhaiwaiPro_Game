@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">honor-demo</string>
+
+    <!--1385948921593501-->
+    <string name="pg_facebook_login_id">236275795131913</string>
+    <string name="pg_google_login_id">667526302735-383dasd18v71mk8ljd8q73fdr6186qhi.apps.googleusercontent.com</string>
+
+    <string name="facebook_app_id">236275795131913</string> <!--459372049308577-->
+    <string name="fb_login_protocol_scheme">84dd2ce9419a466562095772575646cc</string>
+    <string name="facebook_client_token">8be7e094da9aaea1b4f479ad26e4463a</string>
+
+
+
+    <string name="default_notify_channel_id">test</string>
+    <string name="default_notify_channel_name">myludo</string>
+    <string name="REFRESH_TOKEN_BROADCAST_ACTION">myludo</string>
+    <string name="honor_appid">100100088</string>
+    <string name="honor_cpid">502025699355</string>
+</resources>

@@ -1,0 +1,133 @@
+apply plugin: 'com.android.library'
+apply plugin: 'org.jetbrains.kotlin.android'
+
+android {
+    compileSdkVersion 33
+
+
+    defaultConfig {
+        minSdkVersion 23
+        targetSdkVersion 32
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
+
+
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+           // proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        release {
+            minifyEnabled false
+            //对齐
+            zipAlignEnabled true
+            //proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    buildToolsVersion = '33.0.2'
+
+    useLibrary 'org.apache.http.legacy'
+
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
+}
+
+dependencies {
+
+    implementation fileTree(dir: 'libs', include: ['*.jar','*.aar'])
+//    implementation project(':MyOtherLib')
+    //只编译用到，给游戏时提供全部完整的aar
+    compileOnly fileTree(dir: '../MyOtherLib', include: ['*.jar','*.aar'])
+    compileOnly project(':mylibrary_huawei')
+    compileOnly project(':IAP6Helper')
+//    implementation 'com.android.support:support-v4:28.0.0'
+//    implementation 'com.android.support:appcompat-v7:28.0.0'
+//    implementation 'com.android.support:cardview-v7:28.0.0'
+//    implementation 'com.android.support:customtabs:28.0.0'
+
+//    implementation 'com.android.installreferrer:installreferrer:1.0'
+
+    implementation 'com.adjust.sdk:adjust-android:4.31.0'
+    implementation 'com.adjust.sdk:adjust-android-oaid:4.33.5'
+    implementation 'com.huawei.hms:ads-identifier:3.4.62.300'
+    implementation 'com.android.installreferrer:installreferrer:2.2'
+    implementation 'com.google.android.gms:play-services-auth:19.0.0'
+    implementation "com.android.billingclient:billing:6.0.1"
+
+
+    implementation 'com.facebook.android:facebook-login:[14,15)'
+    implementation 'com.facebook.android:facebook-share:[14,15)'
+    implementation 'com.facebook.android:facebook-android-sdk:[14,15)'
+//    implementation 'com.facebook.android:facebook-login:latest.release'
+//    implementation 'com.facebook.android:facebook-share:latest.release'
+//    implementation 'com.facebook.android:facebook-android-sdk:latest.release'
+    implementation 'com.android.support:multidex:1.0.3'
+//    implementation project(":adjust_purchase")
+
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+
+//    implementation 'com.appsflyer:af-android-sdk:6.4.0'
+
+    implementation platform('com.google.firebase:firebase-bom:29.0.4')
+    implementation 'com.google.firebase:firebase-analytics'
+    implementation 'com.google.firebase:firebase-auth:17.0.0'
+    implementation 'com.google.firebase:firebase-auth'
+    implementation 'com.google.firebase:firebase-messaging'
+    implementation 'com.google.firebase:firebase-inappmessaging-display'
+//    implementation 'com.google.firebase:firebase-crashlytics-buildtools:2.8.1'
+
+    //HONOR
+//    implementation 'com.honor.iap-core:iap-sdk:0.2.3.18'
+
+//    testImplementation 'junit:junit:4.12'
+//    androidTestImplementation 'androidx.test:runner:1.2.0'
+//    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+//
+//    implementation 'org.jbundle.util.osgi.wrapped:org.jbundle.util.osgi.wrapped.org.apache.http.client:4.1.2'
+//    implementation 'org.jetbrains:annotations:15.0'
+//    implementation 'org.jetbrains:annotations:15.0'
+//    implementation 'androidx.annotation:annotation:1.1.0'
+
+    //wallet1.0
+    implementation("androidx.core:core-ktx:1.8.0")
+    implementation("androidx.activity:activity-ktx:1.5.1")
+    implementation("androidx.fragment:fragment-ktx:1.5.2")
+    implementation("androidx.appcompat:appcompat:1.4.2")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation("com.google.android.material:material:1.6.1")
+
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.6.3'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.3'
+    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'com.squareup.okhttp3:okhttp:4.9.3'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.3'
+    implementation 'com.squareup.okio:okio:1.11.0'
+    implementation 'com.tinder.scarlet:scarlet:0.1.12'
+    implementation 'com.tinder.scarlet:message-adapter-gson:0.1.12'
+    implementation 'com.tinder.scarlet:websocket-okhttp:0.1.12'
+    implementation 'com.squareup.moshi:moshi:1.13.0'
+    implementation 'com.squareup.moshi:moshi-kotlin:1.13.0'
+
+    //wallet2.0
+    //With this, you only need to update the BOM version to get the latest SDKs.
+    // Just add the BOM as a dependency and then list the SDKs you want to include into your project.
+    implementation(platform("com.walletconnect:android-bom:1.10.0"))
+    implementation("com.walletconnect:android-core")
+    implementation("com.walletconnect:sign")
+    implementation("com.walletconnect:auth")
+
+    //rustore
+    implementation 'ru.rustore.sdk:billingclient:5.1.1'
+
+    //Catappult Billing SDK
+    implementation 'io.catappult:android-appcoins-billing:0.8.0.3'
+
+}
