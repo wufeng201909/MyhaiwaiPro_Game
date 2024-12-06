@@ -86,5 +86,10 @@
       <option name="name" value="maven7" />
       <option name="url" value="https://jfrog.anythinktech.com/artifactory/overseas_sdk" />
     </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven8" />
+      <option name="name" value="maven8" />
+      <option name="url" value="https://packages.aliyun.com/622db4faa0d337fae279741f/maven/asdk" />
+    </remote-repository>
   </component>
 </project>

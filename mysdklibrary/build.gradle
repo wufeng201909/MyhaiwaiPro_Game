@@ -130,4 +130,7 @@ dependencies {
     //Catappult Billing SDK
     implementation 'io.catappult:android-appcoins-billing:0.8.0.3'
 
+    //apkpure
+    implementation 'com.vgamepop:asdk:1.0.4.49'
+
 }

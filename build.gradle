@@ -69,6 +69,14 @@ allprojects {
         maven {
             url "https://jfrog.anythinktech.com/artifactory/overseas_sdk"
         }
+        // apkpure
+        maven {
+            credentials {
+                username '66854827ddd3f6b4eb144cea'
+                password '3bWy6bQkOKE-'
+            }
+            url 'https://packages.aliyun.com/622db4faa0d337fae279741f/maven/asdk'
+        }
         google()
     }
 }
