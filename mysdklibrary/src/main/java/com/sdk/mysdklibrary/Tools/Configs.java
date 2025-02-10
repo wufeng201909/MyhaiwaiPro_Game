@@ -5,9 +5,9 @@ import android.text.TextUtils;
 
 public class Configs {
 	/** 随版本发布的BV */
-	public static String BV = "20240308";//20240226
+	public static String BV = "20250205";
 	/** 随版本发布的BV */
-	public static String SV = "20240308";//20240226
+	public static String SV = "20250205";
 	/** use XPKG */
 	public static boolean USEXPKG = true;
 	/** 要解析数据头 */
@@ -44,20 +44,30 @@ public class Configs {
 	public static Class<Byte> tbyte = Byte.TYPE;
 	public static Class<Boolean> tboolean = Boolean.TYPE;
 	//俄罗斯
-	//	public static String initurl1 ="http://update.meta-sensor.io/init.php";//正式
-	public static String initurl1 ="http://updatenew.meta-sensor.io/init.php";//正式
-	public static String initurl2 = "http://update.surfguild.io/init.php"; //备用
+	//	public static String initurl1 ="http://update.meta-sensor.io/init.php";//正式（弃用）
+//	public static String initurl1 ="http://updatenew.meta-sensor.io/init.php";//正式
+//	public static String initurl2 = "http://update.surfguild.io/init.php"; //备用
+	//sdk自埋点上报
+//	private static String submit_maidian_url = "http://sdk.szmsbdmy.com:8083/azmd.php";
+	//sdk错误搜集上报
+//	private static String submit_error_url = "http://md.szmsbdmy.com:8083/errormd.php";
+	//全球
+	public static String initurl1 ="http://updatensdk.mesojoy.com/init.php";//正式
+	public static String initurl2 = "http://nnupdatensdk.mesojoy.com/init.php"; //备用
+	//sdk自埋点上报
+	private static String submit_maidian_url = "http://nzsdk.mesojoy.com/azmd.php";
+	//sdk错误搜集上报
+	private static String submit_error_url = "http://nzsdk.mesojoy.com/errormd.php";
+
 	//数据上报（旧的hiplay用过）
 	final public static String dataReportUrl = "http://sdk.szmsbdmy.com:8084/outerinterface/zteventreport.php";//http://120.79.164.117:8084/outerinterface/zteventreport.php
 	//tradplus数据上报
 	final public static String tradPlusReportUrl = "http://sdk.szmsbdmy.com:8084/outerinterface/tpadinfocallback.php";
-	//sdk自埋点上报
-	final static String submit_maidian_url = "http://sdk.szmsbdmy.com:8083/azmd.php";
+
 	public static String getMaidianUrl(){
 		return submit_maidian_url;
 	}
-	//sdk错误搜集上报
-	final static String submit_error_url = "http://md.szmsbdmy.com:8083/errormd.php";
+
 	static String interfaceReqFailed = "A01";//请求接口失败
 	static String appError = "A02";//应用层报错
 	static String gameError = "B01";//游戏报错

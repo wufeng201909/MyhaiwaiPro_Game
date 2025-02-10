@@ -34,6 +34,7 @@ public class SkipUtil {
         map.put("samsungsdk",gu_str + "SamsungSdk");
         map.put("catappultsdk",gu_str + "CatappultSdk");
         map.put("puresdk",     gu_str + "PureSdk");
+        map.put("xiaoqisdk",     gu_str + "XqSdk");
     }
     public static VkSdk getVkSdk(){
         return vkSdk;

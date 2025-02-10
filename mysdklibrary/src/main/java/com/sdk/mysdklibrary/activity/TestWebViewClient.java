@@ -82,7 +82,7 @@ public class TestWebViewClient extends WebViewClient {
         if(url.contains("szmsbdmy")&&(url.indexOf("szmsbdmy")<20)){
             this.mContext.finish();
             MyGamesImpl.getInstance().getSdkact().finish();
-            HttpUtils.purchasePayerMax(orderId);
+            HttpUtils.purchaseCheck(orderId);
         }
     }
 

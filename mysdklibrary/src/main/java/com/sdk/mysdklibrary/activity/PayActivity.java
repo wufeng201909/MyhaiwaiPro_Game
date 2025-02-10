@@ -62,6 +62,7 @@ public class PayActivity extends Activity implements View.OnClickListener {
     private Timer tim;
     private static WalletCallback wcallback;
     private String cur_order = "sdk-null";
+    private String ztOrderId;
 
     @Override
     protected void onCreate( Bundle savedInstanceState) {
@@ -312,11 +313,10 @@ public class PayActivity extends Activity implements View.OnClickListener {
                     @Override
                     public void doCofirm() {
                         promptDialog.dismiss();
-                        if(type == PromptDialog.PAY_WALLET_SUC){
-                            if(MySdkApi.getMpaycallBack()!=null)
-                                MySdkApi.getMpaycallBack().payFinish();
+                        if(type.equals(PromptDialog.PAY_WALLET_SUC)){
+                            HttpUtils.purchaseCheck(ztOrderId);
                             PayActivity.this.finish();
-                        }else if(type == PromptDialog.PAY_WALLET_FAILED){
+                        }else if(type.equals(PromptDialog.PAY_WALLET_FAILED)){
                             PayActivity.this.payFail(1001,con);;
                         }
                     }
@@ -341,6 +341,7 @@ public class PayActivity extends Activity implements View.OnClickListener {
             public void callback(final String orderid, final String feepoint, final String payconfirmurl,
                                  String wallet_authData, String wallet_payData, String wallet_authTo, String wallet_payTo, String wallet_nonce,
                                  HashMap<String,String> wemix_param) {
+                ztOrderId = orderid;
                 cur_order = MyApplication.getAppContext().getOrderinfo().getTransactionId();
                 //固定金额时需要传计费点
                 if(!MyApplication.getAppContext().getOrderinfo().isAnyAmount()){

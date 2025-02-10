@@ -7,6 +7,7 @@ import com.adjust.sdk.Adjust;
 import com.adjust.sdk.AdjustEvent;
 import com.sdk.mysdklibrary.MyApplication;
 import com.sdk.mysdklibrary.MyGamesImpl;
+import com.sdk.mysdklibrary.Net.HttpUtils;
 
 public class AdjustUtil {
 
@@ -65,8 +66,22 @@ public class AdjustUtil {
             ae.addCallbackParameter("event","paySuccess");
             ae.addCallbackParameter("orderId",order);
             ae.addCallbackParameter("money",param[1]);
-        }else if (type==5){
-            ae = new AdjustEvent(Configs.getPurchase_notVerified());
+        }else if (type==5){//特殊事件上报
+            String eventName=param[0];
+            String eventToken=param[1];
+            double money = 0D;
+            try{
+                money = Double.parseDouble(param[2]);
+            }catch (NumberFormatException e){
+                e.printStackTrace();
+            }
+            String order=param[3];
+            ae = new AdjustEvent(eventToken);
+            ae.setOrderId(order+"-"+eventName);//设置订单号去重，拼接eventName用于区别于type==4的情况，否则无法上报
+            ae.setRevenue(money, "USD");
+            ae.addCallbackParameter("event",eventName);
+            ae.addCallbackParameter("orderId",order);
+            ae.addCallbackParameter("money",param[2]);
         }else if (type==6){
             ae = new AdjustEvent(Configs.getPurchase_failed());
         }else if (type==7){
@@ -79,5 +94,10 @@ public class AdjustUtil {
             ae.addCallbackParameter("gameid", MyApplication.getAppContext().getGameArgs().getCpid()+MyApplication.getAppContext().getGameArgs().getGameno());
         }
         Adjust.trackEvent(ae);
+        //特殊事件上报
+        if (type==4) {//支付完成之后
+            String order=param[0];
+            HttpUtils.secondConfirm(order);
+        }
     }
 }

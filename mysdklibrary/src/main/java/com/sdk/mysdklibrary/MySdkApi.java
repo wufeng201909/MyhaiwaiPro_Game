@@ -155,6 +155,10 @@ public class MySdkApi {
         SkipUtil.othActivityResult(mact,requestCode,resultCode,data);
     }
 
+    public static void onRequestPermissionsResult(Activity activity, int requestCode, String[] permissions, int[] grantResults) {
+        SkipUtil.onRequestPermissionsResult(activity,requestCode,permissions,grantResults);
+    }
+
     /**
      * activity onSaveInstanceState google登录需要用到
      * @param outState

@@ -48,6 +48,7 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.Settings.Secure;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.sdk.mysdklibrary.Tools.PhoneTool;
@@ -2401,14 +2402,14 @@ public class HttpUtils {
 
 	}
 
-	//payerMax验证支付
-	public static void purchasePayerMax(String orderId){
+	//zt支付二次验证
+	public static void purchaseCheck(String orderId){
 			new Thread(
 					new Runnable() {
 						@Override
 						public void run() {
 							for (int i = 0; i < 5; i++) {
-								String result = HttpUtils.postMethod(Configs.accountserver + "gameparam=sec_confirmation", "{\"exorderno\":\"" + MyApplication.getAppContext().getOrderinfo().getTransactionId() + "\"}", "utf-8");
+								String result = HttpUtils.postMethod(Configs.payserver + "gameparam=sec_confirmation", "{\"exorderno\":\"" + MyApplication.getAppContext().getOrderinfo().getTransactionId() + "\"}", "utf-8");
 								MLog.a(result);
 								JSONObject resultJson = null;
 								try {
@@ -2419,25 +2420,60 @@ public class HttpUtils {
 											OrderInfo orderInfo = MyApplication.getAppContext().getOrderinfo();
 											String money = orderInfo.getAmount();
 											MyGamesImpl.getInstance().ADJSubmit(4,orderId, money);
-											MySdkApi.getMpaycallBack().payFinish();
-										} else {
-											MySdkApi.getMpaycallBack().payFail(code);
+											if(MySdkApi.getMpaycallBack()!=null)MySdkApi.getMpaycallBack().payFinish();
+											break;
+										} else if("0".equals(resultJson.getString("data"))) {
+											if(MySdkApi.getMpaycallBack()!=null)MySdkApi.getMpaycallBack().payFail(code);
 											MLog.a("purchasePayerMax--faile--"+resultJson.getString("msg"));
+											break;
 										}
-										break;
 									} else {
-										MySdkApi.getMpaycallBack().payFail(code);
+										if(MySdkApi.getMpaycallBack()!=null)MySdkApi.getMpaycallBack().payFail(code);
 										MLog.a("purchasePayerMax--faile--"+resultJson.getString("msg"));
+									}
+									try {
+										Thread.sleep(1000*(i+1));
+									} catch (InterruptedException e) {
+										e.printStackTrace();
 									}
 								} catch (JSONException e) {
 									e.printStackTrace();
-									MySdkApi.getMpaycallBack().payFail(e.toString());
+									if(MySdkApi.getMpaycallBack()!=null)MySdkApi.getMpaycallBack().payFail(e.toString());
 								}
 							}
 						}
 					}
 			).start();
+	}
 
+	//支付二次确认，特殊支付事件上报adj
+	public static void secondConfirm(String orderId){
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				for (int i = 0; i < 1; i++) {
+					String result = HttpUtils.postMethod(Configs.payserver + "gameparam=adjust", "{\"orderid\":\"" + orderId + "\"}", "utf-8");
+					MLog.a(result);
+					JSONObject resultJson = null;
+					try {
+						resultJson = new JSONObject(result);
+						String code = resultJson.getString("code");
+						if ("0".equals(code)) {
+							if ("1".equals(resultJson.getString("data"))) {
+								String eventName = resultJson.getString("event_name");
+								String eventToken = resultJson.getString("token");
+								String money = resultJson.getString("money");
+								if(!TextUtils.isEmpty(eventName)&&!TextUtils.isEmpty(eventToken)){
+									MyGamesImpl.getInstance().ADJSubmit(5,eventName,eventToken,money,orderId);
+								}
+							}
+						}
+					} catch (JSONException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		}).start();
 	}
 
 	public static void setfirebaseid(String firebaseid) {
