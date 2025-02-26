@@ -285,6 +285,16 @@ public class MySdkApi {
         MyGamesImpl.getInstance().bindApple(context,callBack);
     }
 
+    //退出SDK当前账号
+    public static void logout(Activity act){
+        SkipUtil.othLogout(act);
+    }
+
+    //返回键退出接口
+    public static void exitApp(Activity act){
+        SkipUtil.othQuit(act);
+    }
+
     // 有效点击事件
     // 3秒内重复点击无效
     private static long lastClickTime;
@@ -351,6 +361,7 @@ public class MySdkApi {
      */
     public static void submitRoleData(int operator, GameRoleBean gameRoleBean) {
         MyGamesImpl.getInstance().submitRoleData(operator, gameRoleBean);
+        SkipUtil.submitRoleData(operator, gameRoleBean);
     }
 
     /**
@@ -360,10 +371,6 @@ public class MySdkApi {
     public static void registerBroadcastReceiver(Activity context){
 //        MythsGamesImpl.getInstance().registerBroadcastReceiver(context);
 //        MyGamesImpl.getInstance().registerBroadcastReceiver(context);
-    }
-
-    public static void onRequestPermissionsResult(int requestCode,String[] permissions, int[] grantResults){
-   //     MythsGamesImpl.getInstance().onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
     //FB邀请

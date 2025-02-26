@@ -46,4 +46,7 @@
 	<string name="myths_email_hint_psd">Пишите SMS</string>
 	<string name="myths_getCode">Получить SMS</string>
 	<string name="myths_account_bind_email">связываете почту</string>
+	<string name="myths_exit_title">Добрые советы</string>
+	<string name="myths_exit_content">Вы уверены, что хотите выйти из игры?</string>
+	<string name="myths_exit_cancel">Отмена</string>
 </resources>

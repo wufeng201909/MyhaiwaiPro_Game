@@ -15,11 +15,13 @@ public class GameRoleBean {
 	private int roleLevel = 0;            //角色等级
 	private String RoleCTime;   //创角时间
     private int vipLevel = -1;   //VIP等级
+	private String roleCE = "-1";	//战力
+	private String roleStage = "-1";	//关卡
+	private String roleRechargeAmount = "-1";	//角色累计充值金额（美元）
+
 
 	//和支付相关的
-	private String gameOrderId;               //游戏订单ID
 	private int gameCoin;         //游戏币
-	private String productId;    //商品id
 	private String gameExt;
 
 	public String getGameZoneName() {
@@ -90,12 +92,12 @@ public class GameRoleBean {
 		this.vipLevel = vipLevel;
 	}
 
-	public String getGameOrderId() {
-		return gameOrderId;
+	public String getRoleCE() {
+		return roleCE;
 	}
 
-	public void setGameOrderId(String gameOrderId) {
-		this.gameOrderId = gameOrderId;
+	public void setRoleCE(String roleCE) {
+		this.roleCE = roleCE;
 	}
 
 	public int getGameCoin() {
@@ -114,12 +116,20 @@ public class GameRoleBean {
 		this.gameExt = gameExt;
 	}
 
-	public String getProductId() {
-		return productId;
+	public String getRoleStage() {
+		return roleStage;
 	}
 
-	public void setProductId(String productId) {
-		this.productId = productId;
+	public void setRoleStage(String roleStage) {
+		this.roleStage = roleStage;
+	}
+
+	public String getRoleRechargeAmount() {
+		return roleRechargeAmount;
+	}
+
+	public void setRoleRechargeAmount(String roleRechargeAmount) {
+		this.roleRechargeAmount = roleRechargeAmount;
 	}
 
 	/**

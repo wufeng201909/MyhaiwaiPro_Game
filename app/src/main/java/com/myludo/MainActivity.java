@@ -418,6 +418,11 @@ public class MainActivity extends Activity {
                                 public void loginFail(String msg) {
                                     MLog.a("phonelogin===loginFail---msg"+msg);
                                 }
+
+                                @Override
+                                public void LogoutSuccess() {
+
+                                }
                             });
 
                 }else if(phone.equals("2")){
@@ -431,6 +436,11 @@ public class MainActivity extends Activity {
                         @Override
                         public void loginFail(String msg) {
                             MLog.a("phonelogin非首次===loginFail---msg"+msg);
+                        }
+
+                        @Override
+                        public void LogoutSuccess() {
+
                         }
                     });
 
@@ -547,6 +557,11 @@ public class MainActivity extends Activity {
                     public void loginFail(String msg) {
                         MLog.a("bindfbFail---msg="+msg);
                     }
+
+                    @Override
+                    public void LogoutSuccess() {
+
+                    }
                 });
             }
         });
@@ -563,6 +578,11 @@ public class MainActivity extends Activity {
                     @Override
                     public void loginFail(String msg) {
                         MLog.a("bindggFail---msg="+msg);
+                    }
+
+                    @Override
+                    public void LogoutSuccess() {
+
                     }
                 });
             }
@@ -602,6 +622,11 @@ public class MainActivity extends Activity {
                             }
                         });
                     }
+
+                    @Override
+                    public void LogoutSuccess() {
+
+                    }
                 });
             }
         });
@@ -634,6 +659,11 @@ public class MainActivity extends Activity {
                                 Toast.makeText(MainActivity.this,msg,Toast.LENGTH_SHORT).show();
                             }
                         });
+
+                    }
+
+                    @Override
+                    public void LogoutSuccess() {
 
                     }
                 },1);
@@ -669,6 +699,11 @@ public class MainActivity extends Activity {
                         });
 
                     }
+
+                    @Override
+                    public void LogoutSuccess() {
+
+                    }
                 },3);
             }
         });
@@ -701,6 +736,11 @@ public class MainActivity extends Activity {
                             }
                         });
                     }
+
+                    @Override
+                    public void LogoutSuccess() {
+
+                    }
                 });
             }
         });
@@ -716,6 +756,9 @@ public class MainActivity extends Activity {
                 roleBean.setRoleLevel(10);
                 roleBean.setVipLevel(1);
                 roleBean.setRoleCTime("角色的创建时间");
+                roleBean.setRoleCE("-1");
+                roleBean.setRoleStage("-1");
+                roleBean.setRoleRechargeAmount("-1");
                 //0=create role; 1=enter game; 2=role update
                 MySdkApi.submitRoleData(1,roleBean);
 

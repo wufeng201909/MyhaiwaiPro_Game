@@ -46,4 +46,7 @@
 	<string name="myths_email_hint_psd">인증 코드를 입력하십시오.</string>
 	<string name="myths_getCode">인증 코드</string>
 	<string name="myths_account_bind_email">메일박스 바인딩</string>
+	<string name="myths_exit_title">친절한 팁</string>
+	<string name="myths_exit_content">게임을 종료하시겠습니까?</string>
+	<string name="myths_exit_cancel">취소</string>
 </resources>

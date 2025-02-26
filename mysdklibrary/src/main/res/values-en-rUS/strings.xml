@@ -46,4 +46,7 @@
 	<string name="myths_email_hint_psd">Type in SMS code</string>
 	<string name="myths_getCode">SMS code</string>
 	<string name="myths_account_bind_email">Bind email</string>
+	<string name="myths_exit_title">Tips</string>
+	<string name="myths_exit_content">Are you sure you want to exit the game?</string>
+	<string name="myths_exit_cancel">Cancel</string>
 </resources>

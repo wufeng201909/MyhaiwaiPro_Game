@@ -46,4 +46,7 @@
 	<string name="myths_email_hint_psd">请输入验证码</string>
 	<string name="myths_getCode">获取验证码</string>
 	<string name="myths_account_bind_email">绑定邮箱</string>
+	<string name="myths_exit_title">温馨提示</string>
+	<string name="myths_exit_content">您确定退出游戏吗？</string>
+	<string name="myths_exit_cancel">取消</string>
 </resources>

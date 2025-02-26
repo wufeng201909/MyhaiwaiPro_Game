@@ -2417,8 +2417,11 @@ public class HttpUtils {
 									String code = resultJson.getString("code");
 									if ("0".equals(code)) {
 										if ("1".equals(resultJson.getString("data"))) {
-											OrderInfo orderInfo = MyApplication.getAppContext().getOrderinfo();
-											String money = orderInfo.getAmount();
+											String money = "";
+											try{
+												money = resultJson.getString("money");
+											}catch (Exception ignored){
+											}
 											MyGamesImpl.getInstance().ADJSubmit(4,orderId, money);
 											if(MySdkApi.getMpaycallBack()!=null)MySdkApi.getMpaycallBack().payFinish();
 											break;

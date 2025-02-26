@@ -1,8 +1,10 @@
 package com.sdk.mysdklibrary.othersdk;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Application;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -13,8 +15,10 @@ import com.sdk.mysdklibrary.MySdkApi;
 import com.sdk.mysdklibrary.Net.HttpUtils;
 import com.sdk.mysdklibrary.Tools.FilesTool;
 import com.sdk.mysdklibrary.Tools.ResourceUtil;
+import com.sdk.mysdklibrary.activity.PayActivity;
 import com.sdk.mysdklibrary.ad.AdUtils;
 import com.sdk.mysdklibrary.interfaces.GetorderCallBack;
+import com.sdk.mysdklibrary.localbeans.GameRoleBean;
 
 import java.lang.reflect.Method;
 import java.util.HashMap;
@@ -210,8 +214,67 @@ public class SkipUtil {
     //----------------以上为生命周期方法----------------
     //退出
     public static void othQuit(Activity act) {
-        Method method = getMethod("exit", Activity.class);
+        act.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Method method = getMethod("exit", Activity.class);
+                if(method == null){
+                    exit(act);
+                    return;
+                }
+                invoke(method,act);
+            }
+        });
+
+    }
+    //默认退出接口
+    private static void exit(Activity act){
+        String title = ResourceUtil.getString(act,"myths_exit_title");
+        String content = ResourceUtil.getString(act,"myths_exit_content");
+        String confirm = ResourceUtil.getString(act,"myths_paywallet_con");
+        String cancel = ResourceUtil.getString(act,"myths_exit_cancel");
+        AlertDialog.Builder builder = new AlertDialog.Builder(act);
+        builder.setTitle(title);
+        builder.setMessage(content);
+        builder.setPositiveButton(confirm,
+                new android.content.DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,
+                                        int which) {
+                        dialog.dismiss();
+                        // 执行游戏退出
+                        act.finish();
+                        android.os.Process.killProcess(android.os.Process.myPid());
+                        System.exit(0);
+                    }
+                });
+        builder.setNegativeButton(cancel,
+                new android.content.DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,
+                                        int which) {
+                        dialog.dismiss();
+                    }
+                });
+        builder.setCancelable(false);
+        builder.create().show();
+    }
+    //注销
+    public static void othLogout(Activity act) {
+        Method method = getMethod("logout", Activity.class);
+        if(method == null){
+            logout(act);
+            return;
+        }
         invoke(method,act);
+    }
+    //默认注销回调
+    private static void logout(Activity act){
+        if(MySdkApi.getLoginCallBack()!=null)
+            MySdkApi.getLoginCallBack().LogoutSuccess();
+    }
+
+    public static void submitRoleData(int operator, GameRoleBean gameRoleBean) {
+        Method method = getMethod("submitRoleData", int.class,GameRoleBean.class);
+        invoke(method,operator,gameRoleBean);
     }
     //消耗确认
     public static void consumeOwnedPurchase(String purchaseToken){

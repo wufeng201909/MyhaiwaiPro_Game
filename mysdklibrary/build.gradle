@@ -133,4 +133,6 @@ dependencies {
     //apkpure
     implementation 'com.vgamepop:asdk:1.0.4.49'
 
+    //小七
+//    implementation 'io.github.x7sy-sm:x7sdk-androidx:8.10.2'
 }

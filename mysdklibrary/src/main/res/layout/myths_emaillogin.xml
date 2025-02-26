@@ -6,7 +6,7 @@
     android:layout_gravity="center">
 
     <RelativeLayout
-        android:layout_width="336dp"
+        android:layout_width="340dp"
         android:layout_height="236dp"
         android:background="@drawable/myths_rus_bg" >
         <TextView
@@ -16,7 +16,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="6dp"
             android:text="@string/myths_login_email"
-            android:textSize="24sp"
+            android:textSize="22sp"
             android:textStyle="bold"
             android:textColor="@color/myths_login_log" />
         <LinearLayout
@@ -36,7 +36,7 @@
         </LinearLayout>
         <LinearLayout
             android:id="@+id/acc_lay"
-            android:layout_width="250dp"
+            android:layout_width="255dp"
             android:layout_height="30dp"
             android:layout_below="@+id/lay_cancle"
             android:layout_marginTop="40dp"
@@ -62,7 +62,7 @@
 
         <TextView
             android:id="@+id/tv_getCode"
-            android:layout_width="89dp"
+            android:layout_width="94dp"
             android:layout_height="30dp"
             android:layout_marginTop="@dimen/margin_15"
             android:layout_below="@+id/acc_lay"
@@ -70,7 +70,7 @@
             android:gravity="center"
             android:text="@string/myths_getCode"
             android:textColor="@color/white"
-            android:textSize="11sp"
+            android:textSize="10sp"
             android:background="@drawable/myths_getcode"/>
         <LinearLayout
             android:id="@+id/pas_lay"
@@ -99,7 +99,7 @@
 
         <TextView
             android:id="@+id/em_login"
-            android:layout_width="250dp"
+            android:layout_width="255dp"
             android:layout_height="30dp"
             android:layout_below="@+id/pas_lay"
             android:layout_marginTop="@dimen/margin_top30"
