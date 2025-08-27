@@ -12,12 +12,9 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/IAP6Helper" />
             <option value="$PROJECT_DIR$/MyOtherLib" />
-            <option value="$PROJECT_DIR$/adjust_purchase" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/honorsdk_demo" />
             <option value="$PROJECT_DIR$/mylibrary_huawei" />
             <option value="$PROJECT_DIR$/mysdklibrary" />
-            <option value="$PROJECT_DIR$/walletdemo_v2" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />

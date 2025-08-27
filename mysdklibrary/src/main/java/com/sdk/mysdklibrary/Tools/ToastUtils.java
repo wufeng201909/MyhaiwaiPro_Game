@@ -10,7 +10,7 @@ public class ToastUtils {
         MySdkApi.getMact().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                Toast.makeText(MySdkApi.getMact(), msg,Toast.LENGTH_SHORT).show();
+                Toast.makeText(MySdkApi.getMact(), msg,Toast.LENGTH_LONG).show();
             }
         });
 

@@ -37,6 +37,7 @@ import com.sdk.mysdklibrary.interfaces.GetorderCallBack;
 import com.sdk.mysdklibrary.interfaces.PayConsumeCallback;
 import com.sdk.mysdklibrary.interfaces.WemixRefreshCallback;
 import com.sdk.mysdklibrary.interfaces.WemixSignCallback;
+import com.sdk.mysdklibrary.othersdk.SkipUtil;
 import com.sdk.mysdklibrary.payUtils.GoogleUtil;
 import com.sdk.mysdklibrary.walletconnect.WemixUtil;
 
@@ -195,7 +196,8 @@ public class PayActivity extends Activity implements View.OnClickListener {
     }
 
     private void onItemClick(int position) {
-        if("32".equals(list_pay.get(position)[1])||"36".equals(list_pay.get(position)[1])){//钱包支付，预先连接钱包再下单
+        String curPayId = list_pay.get(position)[1];
+        if("32".equals(curPayId)||"36".equals(curPayId)){//钱包支付，预先连接钱包再下单
             createWCallback();
             if(tim == null) tim = new Timer();
             try {
@@ -211,7 +213,7 @@ public class PayActivity extends Activity implements View.OnClickListener {
             PhoneTool.onCreateDialog(MyGamesImpl.getInstance().getSdkact(),"","");
             MyGamesImpl.getInstance().connectWallet(wcallback,
                     walletChainIds.size() >0 ? walletChainIds.get(0):null,false);
-        } else if("38".equals(list_pay.get(position)[1])){
+        } else if("38".equals(curPayId)){
             long timestamp_now = System.currentTimeMillis();
             long timestamp_login = MyGamesImpl.getSharedPreferences().getLong("myths_wemixtimestamp",0);
             long expires = MyGamesImpl.getSharedPreferences().getLong("myths_wemixexpires",0);
@@ -230,7 +232,7 @@ public class PayActivity extends Activity implements View.OnClickListener {
             }else {
                 getpayorder(MyGamesImpl.getSharedPreferences().getString("myths_wemixaddress",""), "");
             }
-        } else if("23".equals(list_pay.get(position)[1])){//沙箱支付
+        } else if("23".equals(curPayId)){//沙箱支付
             String proId = MyApplication.getAppContext().getOrderinfo().getFeepoint();
             String money = MyApplication.getAppContext().getOrderinfo().getAmount();
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -254,6 +256,9 @@ public class PayActivity extends Activity implements View.OnClickListener {
 
             builder.setCancelable(false);
             builder.create().show();
+        } else if(curPayId.startsWith("1")&&(curPayId.length()==3)) {//渠道支付小米101、华为102、rustore103
+            SkipUtil.otherSdkPay(MySdkApi.getMact());
+            this.finish();
         } else {
             getpayorder("","");
         }
@@ -369,7 +374,7 @@ public class PayActivity extends Activity implements View.OnClickListener {
                             Configs.gp_url = payconfirmurl;
                             sharedPreferences.edit().putString("gp_url",Configs.gp_url).apply();
                             GoogleUtil.getInstance().querySkuDetailsAndPay(PayActivity.this,orderid,feepoint);
-                        }else if (paytypeid.equals("31") || paytypeid.equals("34") || paytypeid.equals("35") || paytypeid.equals("39") || (paytypeid.startsWith("5")&&paytypeid.length()==2)){//enjoy;payermax;xdLocal;durk
+                        }else if (paytypeid.equals("31") || paytypeid.equals("34") || paytypeid.equals("35") || paytypeid.equals("39") || (paytypeid.startsWith("5")&&(paytypeid.length()==2))){//enjoy;payermax;xdLocal;durk
                             if(TextUtils.isEmpty(payconfirmurl)){
                                 showDia(ResourceUtil.getString(PayActivity.this,"myths_no_url"),PromptDialog.PAY_WALLET_FAILED,false);
                                 return;

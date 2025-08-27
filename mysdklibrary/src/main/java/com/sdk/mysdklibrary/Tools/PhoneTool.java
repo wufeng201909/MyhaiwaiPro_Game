@@ -759,6 +759,7 @@ public class PhoneTool {
 			@Override
 			public void run() {
 				String maidian_value = map.get(flag);
+				if(maidian_value == null) maidian_value = flag;
 				MLog.a("maidian_value-->"+maidian_value);
 				if(maidian_value!=null){
 					JSONObject param = new JSONObject();

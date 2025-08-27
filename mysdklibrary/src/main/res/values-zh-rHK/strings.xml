@@ -49,4 +49,5 @@
 	<string name="myths_exit_title">溫馨提示</string>
 	<string name="myths_exit_content">您確定退出遊戲嗎？</string>
 	<string name="myths_exit_cancel">取消</string>
+	<string name="myths_rupay_tips">付款成功，請等待物品到達~</string>
 </resources>

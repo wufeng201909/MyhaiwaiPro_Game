@@ -5,9 +5,9 @@ import android.text.TextUtils;
 
 public class Configs {
 	/** 随版本发布的BV */
-	public static String BV = "20250205";
+	public static String BV = "20250311";
 	/** 随版本发布的BV */
-	public static String SV = "20250205";
+	public static String SV = "20250311";
 	/** use XPKG */
 	public static boolean USEXPKG = true;
 	/** 要解析数据头 */
@@ -45,19 +45,27 @@ public class Configs {
 	public static Class<Boolean> tboolean = Boolean.TYPE;
 	//俄罗斯
 	//	public static String initurl1 ="http://update.meta-sensor.io/init.php";//正式（弃用）
-//	public static String initurl1 ="http://updatenew.meta-sensor.io/init.php";//正式
-//	public static String initurl2 = "http://update.surfguild.io/init.php"; //备用
+	public static String initurl1 ="http://updatenew.meta-sensor.io/init.php";//正式
+	public static String initurl2 = "http://update.surfguild.io/init.php"; //备用
 	//sdk自埋点上报
-//	private static String submit_maidian_url = "http://sdk.szmsbdmy.com:8083/azmd.php";
+	private static String submit_maidian_url = "http://sdk.szmsbdmy.com:8083/azmd.php";
 	//sdk错误搜集上报
-//	private static String submit_error_url = "http://md.szmsbdmy.com:8083/errormd.php";
+	private static String submit_error_url = "http://md.szmsbdmy.com:8083/errormd.php";
 	//全球
-	public static String initurl1 ="http://updatensdk.mesojoy.com/init.php";//正式
-	public static String initurl2 = "http://nnupdatensdk.mesojoy.com/init.php"; //备用
-	//sdk自埋点上报
-	private static String submit_maidian_url = "http://nzsdk.mesojoy.com/azmd.php";
-	//sdk错误搜集上报
-	private static String submit_error_url = "http://nzsdk.mesojoy.com/errormd.php";
+//	public static String initurl1 ="http://updatensdk.mesojoy.com/init.php";//正式
+//	public static String initurl2 = "http://nnupdatensdk.mesojoy.com/init.php"; //备用
+//	//sdk自埋点上报
+//	private static String submit_maidian_url = "http://nzsdk.mesojoy.com/azmd.php";
+//	//sdk错误搜集上报
+//	private static String submit_error_url = "http://nzsdk.mesojoy.com/errormd.php";
+
+	//girl
+//	public static String initurl1 ="http://elsup.pupujun.com/init.php";//正式
+//	public static String initurl2 = "http://elsup.pupujun.com/init.php"; //备用
+//	//sdk自埋点上报
+//	private static String submit_maidian_url = "/azmd.php";
+//	//sdk错误搜集上报
+//	private static String submit_error_url = "/errormd.php";
 
 	//数据上报（旧的hiplay用过）
 	final public static String dataReportUrl = "http://sdk.szmsbdmy.com:8084/outerinterface/zteventreport.php";//http://120.79.164.117:8084/outerinterface/zteventreport.php
@@ -154,6 +162,7 @@ public class Configs {
 	public static String ggLogin = "ggLogin";//google登录开关
 	public static String vkLogin = "vkLogin";//vk登录开关
 	public static String eLogin = "emailLogin";//email登录开关
+	public static String ru_pay_tips = "ruPayTips";//rustore支付完的提示语(传0表示关闭提示)
 
 	public static String getItem(String key){
 		return ResourceUtil.getJsonItem(Configs.othersdkextdata5,key);

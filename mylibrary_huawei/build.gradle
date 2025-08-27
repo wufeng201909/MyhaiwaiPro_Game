@@ -44,7 +44,7 @@ dependencies {
 //    implementation 'com.huawei.hms:hianalytics:6.10.0.302'
 
     //小米
-    api "com.xiaomi.billingclient:billing:1.1.2"
+    api "com.xiaomi.billingclient:billing:1.1.7"
     //vk-旧
     api "com.vk:vksdk-pub:0.109-24422"
     api "com.vk:oauth-vk:0.109-24422"

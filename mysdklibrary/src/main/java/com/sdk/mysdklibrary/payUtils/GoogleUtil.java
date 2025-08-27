@@ -2,6 +2,7 @@ package com.sdk.mysdklibrary.payUtils;
 
 import android.app.Activity;
 import android.content.Context;
+import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 
@@ -11,12 +12,14 @@ import com.android.billingclient.api.BillingFlowParams;
 import com.android.billingclient.api.BillingResult;
 import com.android.billingclient.api.ConsumeParams;
 import com.android.billingclient.api.ConsumeResponseListener;
+import com.android.billingclient.api.PendingPurchasesParams;
 import com.android.billingclient.api.ProductDetails;
 import com.android.billingclient.api.ProductDetailsResponseListener;
 import com.android.billingclient.api.Purchase;
 import com.android.billingclient.api.PurchasesResponseListener;
 import com.android.billingclient.api.PurchasesUpdatedListener;
 import com.android.billingclient.api.QueryProductDetailsParams;
+import com.android.billingclient.api.QueryProductDetailsResult;
 import com.android.billingclient.api.QueryPurchasesParams;
 import com.google.common.collect.ImmutableList;
 import com.sdk.mysdklibrary.MyGamesImpl;
@@ -52,7 +55,8 @@ public class GoogleUtil {
             createPurchasesUpdatedListener();
             billingClient = BillingClient.newBuilder(con)
                     .setListener(purchasesUpdatedListener)
-                    .enablePendingPurchases()
+                    .enablePendingPurchases(PendingPurchasesParams.newBuilder().enableOneTimeProducts().build())
+                    .enableAutoServiceReconnection() // Add this line to enable reconnection
                     .build();
             connectService();
         }catch (Error ignored){
@@ -148,7 +152,7 @@ public class GoogleUtil {
                 queryProductDetailsParams,
                 new ProductDetailsResponseListener() {
                     public void onProductDetailsResponse(BillingResult billingResult,
-                                                         List<ProductDetails> productDetailsList) {
+                                                         QueryProductDetailsResult queryProductDetailsResult) {
                         // check billingResult
                         if(billingResult==null){
                             payFail(667,"queryProductDetailsAsync--null BillingResult");
@@ -157,10 +161,7 @@ public class GoogleUtil {
                         int responseCode = billingResult.getResponseCode();
                         String debugMessage = billingResult.getDebugMessage();
                         if(responseCode==BillingClient.BillingResponseCode.OK){
-                            if (productDetailsList == null) {
-                                payFail(responseCode,"queryProductDetailsAsync:"+"null productDetailsList");
-                                return;
-                            }
+                            List<ProductDetails> productDetailsList = queryProductDetailsResult.getProductDetailsList();
                             MLog.a("productDetailsList---size--->"+productDetailsList.size());
                             for (ProductDetails productDetails:productDetailsList){
                                 MLog.a("productDetails---ID---->"+ productDetails.getProductId());
@@ -183,10 +184,11 @@ public class GoogleUtil {
             @Override
             public void run() {
                 String offerToken = "";
-                if (productDetails.getSubscriptionOfferDetails() != null) {
-                    for(int i = 0; i < productDetails.getSubscriptionOfferDetails().size();i++) {
-                        offerToken =  productDetails.getSubscriptionOfferDetails().get(i).getOfferToken();
-                        if(!offerToken.isEmpty()){
+                List<ProductDetails.OneTimePurchaseOfferDetails> l = productDetails.getOneTimePurchaseOfferDetailsList();
+                if (l != null) {
+                    for(int i = 0; i < l.size();i++) {
+                        offerToken = l.get(i).getOfferToken();
+                        if(!TextUtils.isEmpty(offerToken)){
                             break;
                         }
                     }
@@ -196,8 +198,11 @@ public class GoogleUtil {
                                 BillingFlowParams.ProductDetailsParams.newBuilder()
                                         // retrieve a value for "productDetails" by calling queryProductDetailsAsync()
                                         .setProductDetails(productDetails)
-                                        // to get an offer token, call ProductDetails.getSubscriptionOfferDetails()
-                                        // for a list of offers that are available to the user
+                                        // Get the offer token:
+                                        // a. For one-time products, call ProductDetails.getOneTimePurchaseOfferDetailsList()
+                                        // for a list of offers that are available to the user.
+                                        // b. For subscriptions, call ProductDetails.subscriptionOfferDetails()
+                                        // for a list of offers that are available to the user.
                                         .setOfferToken(offerToken)
                                         .build()
                         );
@@ -313,7 +318,7 @@ public class GoogleUtil {
                 queryProductDetailsParams,
                 new ProductDetailsResponseListener() {
                     public void onProductDetailsResponse(BillingResult billingResult,
-                                                         List<ProductDetails> productDetailsList) {
+                                                         QueryProductDetailsResult queryProductDetailsResult) {
                         // check billingResult
                         if(billingResult==null){
                             detailsCallBack.error("queryProductDetailsAsync--null BillingResult");
@@ -322,10 +327,7 @@ public class GoogleUtil {
                         int responseCode = billingResult.getResponseCode();
                         String debugMessage = billingResult.getDebugMessage();
                         if(responseCode==BillingClient.BillingResponseCode.OK){
-                            if (productDetailsList == null) {
-                                detailsCallBack.error("queryProductDetailsAsync:"+"null productDetailsList");
-                                return;
-                            }
+                            List<ProductDetails> productDetailsList = queryProductDetailsResult.getProductDetailsList();
                             MLog.a("productDetailsList--size-->"+productDetailsList.size());
                             List<ProductDetails.OneTimePurchaseOfferDetails> detailsList = new ArrayList<>();
                             for (ProductDetails productDetails:productDetailsList){

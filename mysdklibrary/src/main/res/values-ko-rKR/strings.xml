@@ -49,4 +49,5 @@
 	<string name="myths_exit_title">친절한 팁</string>
 	<string name="myths_exit_content">게임을 종료하시겠습니까?</string>
 	<string name="myths_exit_cancel">취소</string>
+	<string name="myths_rupay_tips">결제 성공, 물건이 도착할 때까지 기다려주세요~</string>
 </resources>

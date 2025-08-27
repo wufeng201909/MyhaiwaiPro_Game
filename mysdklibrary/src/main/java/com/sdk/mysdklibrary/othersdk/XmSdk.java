@@ -126,6 +126,7 @@ public class XmSdk {
     }
 
     public static void paySDK(Activity activity, String orderId, final String paynotifyurl,String extra1,String extra2) {
+        MLog.a("paySDK--start0");
         isResumeCheck = false;
         sharedPreferences.edit().putString("xm_conf_url", paynotifyurl).apply();
         checkOwnedPurchases();
@@ -133,6 +134,7 @@ public class XmSdk {
         skuList.add(extra1);
         SkuDetailsParams.Builder params = SkuDetailsParams.newBuilder();
         params.setSkusList(skuList).setType(BillingClient.SkuType.INAPP);
+        MLog.a("paySDK--start1");
         billingClient.querySkuDetailsAsync(params.build(),
                 new SkuDetailsResponseListener() {
                     @Override
@@ -150,6 +152,7 @@ public class XmSdk {
                 });
     }
     private static void launchBillingFlow(Activity act,String orderId,SkuDetails skuDetails){
+        MLog.a("launchBillingFlow--start");
         act.runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -161,11 +164,13 @@ public class XmSdk {
                         .setObfuscatedAccountId(accountId)
                         .setObfuscatedProfileId(orderId)
                         .build();
+                MLog.a("launchBillingFlow--start1");
                 BillingResult result = billingClient.launchBillingFlow(act, params);
                 int code = result.getResponseCode();
                 if(code == BillingClient.BillingResponseCode.OK){
-                    System.out.println("launchBillingFlow--success");
+                    MLog.a("launchBillingFlow--success");
                 }else{
+                    MLog.a("launchBillingFlow--fail:"+code);
                     PhoneTool.submitErrorEvent(Configs.getAppErrorCode(),"xm:launchBillingFlow:"+ code);
                     MySdkApi.getMpaycallBack().payFail("launchBillingFlow:"+code);
                 }

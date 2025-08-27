@@ -25,7 +25,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
-    int cancle_id,hwlogin_id,google_con_id,vklogin_id,fastlogin_id,emaillogin_id,appbazarlogin_id;
+    int cancle_id,hwlogin_id,google_con_id,vklogin_id,fastlogin_id,emaillogin_id,appbazarlogin_id,fblogin_id;
     RelativeLayout loginlayout;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,7 +38,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         vklogin_id = ResourceUtil.getId(this,"vklogin_icon");
         fastlogin_id = ResourceUtil.getId(this,"fastlogin_icon");
         emaillogin_id = ResourceUtil.getId(this,"emaillogin_icon");
-//        appbazarlogin_id = ResourceUtil.getId(this,"appbazarlogin_icon");
+        fblogin_id = ResourceUtil.getId(this,"fblogin_icon");
+        int fblogin_log_id = ResourceUtil.getId(this,"fblogin_icon_log");
         int loginlayout_id = ResourceUtil.getId(this,"myths_loginlayout");
         int myths_log_login = ResourceUtil.getId(this,"myths_log_login");
         int lay_cancle = ResourceUtil.getId(this,"lay_cancle");
@@ -50,7 +51,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         LinearLayout vklogin = findViewById(vklogin_id);
         LinearLayout fastlogin = findViewById(fastlogin_id);
         LinearLayout emaillogin = findViewById(emaillogin_id);
-//        LinearLayout appbazarlogin = findViewById(appbazarlogin_id);
+        LinearLayout fblogin = findViewById(fblogin_id);
+        TextView fblogin_log = findViewById(fblogin_log_id);
         loginlayout =findViewById(loginlayout_id);
 
         String loginUiNew = ResourceUtil.getString(this, "myths_loginui_new");
@@ -63,12 +65,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             l_item.setMargins(0,2,0,0);
             l_item.width = (int)(l_item.width*1.6);
             l_item.height = (int)(l_item.height*1.65);
+
             vklogin.setLayoutParams(l_item);
             hwlogin.setLayoutParams(l_item);
             googlelogin.setLayoutParams(l_item);
             fastlogin.setLayoutParams(l_item);
             emaillogin.setLayoutParams(l_item);
-//            appbazarlogin.setLayoutParams(l_item);
+
+            LinearLayout.LayoutParams fb_log_item = (LinearLayout.LayoutParams)fblogin_log.getLayoutParams();
+            fb_log_item.width = (int)(fb_log_item.width*1.65);
+            fb_log_item.height = (int)(fb_log_item.height*1.65);
+            fblogin_log.setLayoutParams(fb_log_item);
+            fblogin.setLayoutParams(l_item);
             //设置居中
             LinearLayout login_lay = findViewById(login_lay_id);
             RelativeLayout.LayoutParams l_login = (RelativeLayout.LayoutParams)login_lay.getLayoutParams();
@@ -81,15 +89,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             int tv_gg_id = ResourceUtil.getId(this,"tv_gg");
             int tv_yk_id = ResourceUtil.getId(this,"tv_yk");
             int tv_email_id = ResourceUtil.getId(this,"tv_email");
-            int tv_appbazar_id = ResourceUtil.getId(this,"tv_appbazar");
+            int tv_fb_id = ResourceUtil.getId(this,"tv_fb");
             ((TextView)findViewById(tv_vk_id)).setTextSize(20);
             ((TextView)findViewById(tv_hw_id)).setTextSize(20);
             ((TextView)findViewById(tv_gg_id)).setTextSize(20);
             ((TextView)findViewById(tv_yk_id)).setTextSize(20);
             ((TextView)findViewById(tv_email_id)).setTextSize(20);
-//            ((TextView)findViewById(tv_appbazar_id)).setTextSize(20);
+            ((TextView)findViewById(tv_fb_id)).setTextSize(20);
         }
-        resetView(vklogin,hwlogin,googlelogin,emaillogin,fastlogin,null);
+        resetView(vklogin,hwlogin,googlelogin,emaillogin,fastlogin,fblogin);
 
         ResourceUtil.expandTouchArea(cancle,ResourceUtil.dip2px(this,10));
         cancle.setOnClickListener(this);
@@ -98,7 +106,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         vklogin.setOnClickListener(this);
         fastlogin.setOnClickListener(this);
         emaillogin.setOnClickListener(this);
-//        appbazarlogin.setOnClickListener(this);
+        fblogin.setOnClickListener(this);
         //设置隐藏的日志调试开关
         fastlogin.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
@@ -120,9 +128,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         boolean isFastGone = fastlogin.getVisibility() == View.GONE;
         boolean isEmailGone = emaillogin.getVisibility() == View.GONE;
         boolean isggVisible = googlelogin.getVisibility() == View.VISIBLE;
-//        boolean isAppBazarVisible = appbazarlogin.getVisibility() == View.VISIBLE;
+        boolean isFbGone = fblogin.getVisibility() == View.GONE;
 
-        if(isHwGone&&isVkGone&&isFastGone&&isEmailGone&&isggVisible){//只有google登录时直接跳转
+        if(isHwGone&&isVkGone&&isFastGone&&isEmailGone&&isFbGone&&isggVisible){//只有google登录时直接跳转
             PhoneTool.submitSDKEvent("4","login_google");
             MySdkApi.chooseLogin(MySdkApi.getMact(), MySdkApi.getLoginCallBack(),3);
             this.finish();
@@ -140,7 +148,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if(SkipUtil.getVkIdSdk() !=null)SkipUtil.getVkIdSdk().initSDK(this);
     }
     //ui布局修改
-    private void resetView(LinearLayout vklogin, LinearLayout hwlogin, LinearLayout googlelogin, LinearLayout emaillogin, LinearLayout fastlogin, LinearLayout appbazarlogin) {
+    private void resetView(LinearLayout vklogin, LinearLayout hwlogin, LinearLayout googlelogin, LinearLayout emaillogin, LinearLayout fastlogin, LinearLayout fblogin) {
         LinearLayout.LayoutParams l = (LinearLayout.LayoutParams)loginlayout.getLayoutParams();
         //vk登录开关-默认开启
         String vkLogin = Configs.getItem(Configs.vkLogin);
@@ -176,6 +184,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             fastlogin.setVisibility(View.VISIBLE);
             l.height = l.height+fastlogin.getLayoutParams().height;
         }
+        //fb登录开关-默认关闭
+        String fLogin = Configs.getItem("fbLogin");
+        if(fLogin.equals("1")){
+            fblogin.setVisibility(View.VISIBLE);
+            l.height = l.height+fblogin.getLayoutParams().height;
+        }
         //appbazar登录开关-默认关闭--appbazar包打开登录
 //        if(pub.startsWith("appbazar")){
 //            appbazarlogin.setVisibility(View.VISIBLE);
@@ -197,7 +211,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }else if (id==appbazarlogin_id) {//appbazar
             PhoneTool.submitSDKEvent("20","login_AppBazar");
             MySdkApi.chooseLogin(MySdkApi.getMact(), MySdkApi.getLoginCallBack(),10);
-        }else if (id==google_con_id) {
+        }else if (id==fblogin_id) {//fb
+            PhoneTool.submitSDKEvent("21","login_fb");
+            MySdkApi.chooseLogin(MySdkApi.getMact(), MySdkApi.getLoginCallBack(),2);
+        }
+        else if (id==google_con_id) {
             PhoneTool.submitSDKEvent("4","login_google");
             MySdkApi.chooseLogin(MySdkApi.getMact(), MySdkApi.getLoginCallBack(),3);
         }else if (id==vklogin_id) {

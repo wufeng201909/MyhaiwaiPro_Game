@@ -333,11 +333,13 @@ public class MySdkApi {
 //                    MyGamesImpl.getInstance().openOtherPay(context,orderid,feepoint,payconfirmurl);
 //                }
 //            });
-        }else if(pub.startsWith("asdk")){
-            SkipUtil.mySdkPay();
         }else{
-            SkipUtil.otherSdkPay(act);
+            SkipUtil.mySdkPay();
         }
+        //这里弃用，渠道支付整合到paylist里面
+//        else{
+//            SkipUtil.otherSdkPay(act);
+//        }
     }
 
     /**

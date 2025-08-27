@@ -126,6 +126,32 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/fblogin_icon"
+                android:layout_width="206dp"
+                android:layout_height="41dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/margin_10"
+                android:visibility="gone"
+                android:paddingStart="@dimen/margin_15"
+                android:paddingEnd="@dimen/margin_15"
+                android:background="@drawable/myths_loginkuang_fb">
+                <TextView
+                    android:id="@+id/fblogin_icon_log"
+                    android:layout_width="@dimen/margin_left25"
+                    android:layout_height="@dimen/margin_left25"
+                    android:background="@drawable/myths_fblogin_big" />
+                <TextView
+                    android:id="@+id/tv_fb"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:gravity="center"
+                    android:text="@string/myths_facebooklogin"
+                    android:textColor="@color/myths_login_black"
+                    android:textSize="13sp"/>
+            </LinearLayout>
+            <LinearLayout
                 android:id="@+id/fastlogin_icon"
                 android:layout_width="206dp"
                 android:layout_height="41dp"

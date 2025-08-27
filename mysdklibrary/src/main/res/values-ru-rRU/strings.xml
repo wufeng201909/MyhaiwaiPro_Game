@@ -49,4 +49,5 @@
 	<string name="myths_exit_title">Добрые советы</string>
 	<string name="myths_exit_content">Вы уверены, что хотите выйти из игры?</string>
 	<string name="myths_exit_cancel">Отмена</string>
+	<string name="myths_rupay_tips">Оплата успешна, пожалуйста, дождитесь поступления предметов~</string>
 </resources>

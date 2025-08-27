@@ -2,7 +2,7 @@
 
 buildscript {
     repositories {
-        mavenCentral()
+
         maven { url 'https://maven.aliyun.com/repository/google' }
         maven { url 'https://maven.aliyun.com/repository/public' }
        // maven { url 'https://dl.google.com/dl/android/maven2/' }
@@ -29,6 +29,7 @@ buildscript {
         maven {
             url "https://jfrog.anythinktech.com/artifactory/overseas_sdk"
         }
+        mavenCentral()
         google()
     }
     dependencies {
@@ -41,7 +42,7 @@ buildscript {
 
 allprojects {
     repositories {
-        mavenCentral()
+
         maven { url 'https://maven.aliyun.com/repository/google' }
         maven { url 'https://maven.aliyun.com/repository/public' }
        // maven { url 'https://dl.google.com/dl/android/maven2/' }
@@ -77,6 +78,7 @@ allprojects {
             }
             url 'https://packages.aliyun.com/622db4faa0d337fae279741f/maven/asdk'
         }
+        mavenCentral()
         google()
     }
 }

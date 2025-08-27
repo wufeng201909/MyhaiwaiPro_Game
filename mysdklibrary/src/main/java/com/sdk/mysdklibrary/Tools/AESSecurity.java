@@ -76,6 +76,8 @@ public class AESSecurity {
 			//			output= cipher.doFinal(Base64.decode(input));
 			byte[] result = cipher.doFinal(Base64.decode(input));
 			content = new String(result);
+			//去掉控制字符，避免数据后面出现乱码字符
+			content = content.replaceAll("[\\s\\p{Cntrl}]","");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -13,10 +13,14 @@ import com.sdk.mysdklibrary.MySdkApi;
 import com.sdk.mysdklibrary.Net.HttpUtils;
 import com.sdk.mysdklibrary.Tools.Configs;
 import com.sdk.mysdklibrary.Tools.MLog;
+import com.sdk.mysdklibrary.Tools.PhoneTool;
 import com.sdk.mysdklibrary.Tools.ResourceUtil;
+import com.sdk.mysdklibrary.Tools.ToastUtils;
 import com.sdk.mysdklibrary.interfaces.PayConsumeCallback;
 
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import kotlin.Unit;
 import ru.rustore.sdk.billingclient.RuStoreBillingClient;
@@ -25,14 +29,15 @@ import ru.rustore.sdk.billingclient.model.purchase.PaymentResult;
 import ru.rustore.sdk.billingclient.model.purchase.Purchase;
 import ru.rustore.sdk.billingclient.model.purchase.PurchaseState;
 import ru.rustore.sdk.billingclient.usecase.PurchasesUseCase;
-import ru.rustore.sdk.core.feature.model.FeatureAvailabilityResult;
 import ru.rustore.sdk.core.tasks.OnFailureListener;
 import ru.rustore.sdk.core.tasks.OnSuccessListener;
+import ru.rustore.sdk.core.util.RuStoreUtils;
 
 public class RustoreSdk {
     private static SharedPreferences sharedPreferences = MyApplication.context.getSharedPreferences("user_info", 0);
     private static RuStoreBillingClient billingClient;
     private static boolean isResumeCheck = true;
+    private static boolean isRuStoreInstalled = false;
     public static void initSDK(Activity activity) {
         String appId = ResourceUtil.getString(activity, "ruStore_appId");
         String deeplinkScheme = ResourceUtil.getString(activity, "ruStore_deeplinkScheme");
@@ -51,44 +56,27 @@ public class RustoreSdk {
         }catch (Exception e){
             e.printStackTrace();
         }
+        isRuStoreInstalled =  RuStoreUtils.INSTANCE.isRuStoreInstalled(activity);
+
+        //开启定时上报（测试）
+        long flag = System.currentTimeMillis();
+        Timer t = new Timer();
+        startCusReport(flag,t);
     }
 
     public static void paySDK(Activity activity, String orderId, final String paynotifyurl,String extra1,String extra2) {
         if(billingClient == null) return;
+        MLog.a("paySDK--start0");
         isResumeCheck = false;
         sharedPreferences.edit().putString("rustore_conf_url", paynotifyurl).apply();
         checkOwnedPurchases();
 
-        billingClient.getPurchases().checkPurchasesAvailability().addOnSuccessListener(new OnSuccessListener<FeatureAvailabilityResult>() {
-            @Override
-            public void onSuccess(FeatureAvailabilityResult featureAvailabilityResult) {
-                if (featureAvailabilityResult instanceof FeatureAvailabilityResult.Available) {
-                    // Process purchases available
-                    pay(orderId,extra1);
-                } else if (featureAvailabilityResult instanceof FeatureAvailabilityResult.Unavailable) {
-                    // Process purchases unavailable
-                    String msg = "unavailable";
-                    try{
-                        ((FeatureAvailabilityResult.Unavailable) featureAvailabilityResult).getCause().printStackTrace();
-                        msg = ((FeatureAvailabilityResult.Unavailable) featureAvailabilityResult).getCause().getMessage();
-                    }catch (Exception e){
-                        e.printStackTrace();
-                    }
-                    MySdkApi.getMpaycallBack().payFail("FeatureAvailabilityResult.Unavailable:"+msg);
-                }
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Throwable throwable) {
-                throwable.printStackTrace();
-                MySdkApi.getMpaycallBack().payFail("checkPurchasesAvailability:false:"+throwable.getMessage());
-            }
-        });
-
+        pay(orderId,extra1);
     }
 
     private static void pay(String orderId,String proId){
         PurchasesUseCase purchasesUseCase = billingClient.getPurchases();
+        MLog.a("paySDK--start1");
         purchasesUseCase.purchaseProduct(proId,orderId,1,orderId).addOnSuccessListener(new OnSuccessListener<PaymentResult>() {
             @Override
             public void onSuccess(PaymentResult paymentResult) {
@@ -99,6 +87,7 @@ public class RustoreSdk {
             @Override
             public void onFailure(@NonNull Throwable throwable) {
                 throwable.printStackTrace();
+                System.out.println("purchaseProduct--onFailure:"+throwable.getMessage());
                 MySdkApi.getMpaycallBack().payFail("purchaseProduct:Fail:"+throwable.getMessage());
             }
         });
@@ -109,6 +98,13 @@ public class RustoreSdk {
 //            purchasesUseCase.deletePurchase(purchaseId);
             MySdkApi.getMpaycallBack().payFail("Cancelled");
         } else if (paymentResult instanceof PaymentResult.Success) {//成功
+            String ru_pay_tips = Configs.getItem(Configs.ru_pay_tips);
+            if(!"0".equals(ru_pay_tips)){//为0表示关闭提示语，默认为""或者有值时显示
+                if(TextUtils.isEmpty(ru_pay_tips)){//为空时取本地值
+                    ru_pay_tips = ResourceUtil.getString(MySdkApi.getMact(),"myths_rupay_tips");
+                }
+                ToastUtils.Toast(ru_pay_tips);
+            }
             PaymentResult.Success purchaseResult = ((PaymentResult.Success) paymentResult);
             String subscriptionToken = purchaseResult.getSubscriptionToken();
             String orderId = purchaseResult.getOrderId();
@@ -192,14 +188,33 @@ public class RustoreSdk {
     }
 
     public static void onResume(Activity act) {
-        //通过isResumeCheck防止支付成功后重复请求查询漏单
-        if(isResumeCheck){
-            checkOwnedPurchases();
-        }else{
-            isResumeCheck = true;
+        //设备上安装了rustore商店才调用checkOwnedPurchases，因为此方法始终需要用户的 VK ID 授权，避免频繁弹窗授权
+        if(isRuStoreInstalled){
+            //通过isResumeCheck防止支付成功后重复请求查询漏单
+            if(isResumeCheck){
+                checkOwnedPurchases();
+            }else{
+                isResumeCheck = true;
+            }
         }
     }
     public static void onNewIntent(Activity activity, Intent intent) {
         if(billingClient != null)billingClient.onNewIntent(intent);
+    }
+
+    //登录之前上报时长，每5秒上报
+    private static void startCusReport(long flag,Timer t){
+        PhoneTool.submitSDKEvent("A"+flag,"当前时长："+(System.currentTimeMillis()-flag)+"ms");
+        t.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                if(MySdkApi.getLoginCallBack() == null){
+                    startCusReport(flag,t);
+                }else{
+                    t.cancel();
+                }
+            }
+        },5000);
+
     }
 }
