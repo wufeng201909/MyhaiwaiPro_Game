@@ -2,6 +2,8 @@ package com.sdk.mysdklibrary.othersdk
 
 import android.app.Activity
 import android.app.Application
+import android.util.Log
+import android.util.Log.println
 import androidx.activity.ComponentActivity
 import com.sdk.mysdklibrary.Net.HttpUtils
 import com.sdk.mysdklibrary.Tools.PhoneTool
@@ -22,14 +24,14 @@ class VkIdSdk {
     fun login(act: Activity){
         vkid.authorize(_act,authCallback = object:VKID.AuthCallback{
             override fun onFail(fail: VKIDAuthFail) {
-                println("error-->"+fail.description)
+                println(Log.VERBOSE,"","error-->"+fail.description)
                 PhoneTool.submitSDKEvent("11",fail.description)
             }
 
             override fun onSuccess(accessToken: AccessToken) {
                 val token = accessToken.token
                 val userId = accessToken.userID
-                println("accessToken-userId->$userId")
+                println(Log.VERBOSE,"","accessToken-userId->$userId")
                 HttpUtils.vkLogin_check(userId.toString(),token)
                 _act.finish()
             }

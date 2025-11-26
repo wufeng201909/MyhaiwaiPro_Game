@@ -28,6 +28,7 @@ import com.sdk.mysdklibrary.Net.HttpUtils;
 import com.sdk.mysdklibrary.Tools.MLog;
 import com.sdk.mysdklibrary.interfaces.PayConsumeCallback;
 import com.sdk.mysdklibrary.interfaces.ProductDetailsCallBack;
+import com.sdk.mysdklibrary.localbeans.MyProductDetails;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -329,11 +330,11 @@ public class GoogleUtil {
                         if(responseCode==BillingClient.BillingResponseCode.OK){
                             List<ProductDetails> productDetailsList = queryProductDetailsResult.getProductDetailsList();
                             MLog.a("productDetailsList--size-->"+productDetailsList.size());
-                            List<ProductDetails.OneTimePurchaseOfferDetails> detailsList = new ArrayList<>();
+                            List<MyProductDetails> detailsList = new ArrayList<>();
                             for (ProductDetails productDetails:productDetailsList){
-                                MLog.a("productDetails--ID-->"+ productDetails.getProductId());
-                                ProductDetails.OneTimePurchaseOfferDetails details = productDetails.getOneTimePurchaseOfferDetails();
-                                detailsList.add(details);
+                                String proId = productDetails.getProductId();
+                                String FormattedPrice = productDetails.getOneTimePurchaseOfferDetails().getFormattedPrice();
+                                detailsList.add(new MyProductDetails(proId,FormattedPrice));
                             }
                             detailsCallBack.callBack(detailsList);
                         }else{

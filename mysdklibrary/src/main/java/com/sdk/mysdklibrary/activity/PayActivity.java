@@ -218,17 +218,17 @@ public class PayActivity extends Activity implements View.OnClickListener {
             long timestamp_login = MyGamesImpl.getSharedPreferences().getLong("myths_wemixtimestamp",0);
             long expires = MyGamesImpl.getSharedPreferences().getLong("myths_wemixexpires",0);
             if((timestamp_now-timestamp_login)/1000+20>expires){//从wemix登录到支付的时间间隔大于token的有效期
-                WemixUtil.getInstance().RefreshToken(PayActivity.this, new WemixRefreshCallback() {
-                    @Override
-                    public void onSuccess(String address) {
-                        getpayorder(address,"");
-                    }
-
-                    @Override
-                    public void onError(String msg) {
-                        showDia(msg,PromptDialog.PAY_WALLET_FAILED,false);
-                    }
-                });
+//                WemixUtil.getInstance().RefreshToken(PayActivity.this, new WemixRefreshCallback() {
+//                    @Override
+//                    public void onSuccess(String address) {
+//                        getpayorder(address,"");
+//                    }
+//
+//                    @Override
+//                    public void onError(String msg) {
+//                        showDia(msg,PromptDialog.PAY_WALLET_FAILED,false);
+//                    }
+//                });
             }else {
                 getpayorder(MyGamesImpl.getSharedPreferences().getString("myths_wemixaddress",""), "");
             }
@@ -409,17 +409,17 @@ public class PayActivity extends Activity implements View.OnClickListener {
                             }
                             //需要先授权，再发起支付签名
                             String wemix_approveurl = wemix_param.get("wemix_approveurl");
-                            WemixUtil.getInstance().sign(PayActivity.this, useraddress, wemix_approvedhash, new WemixSignCallback() {
-                                @Override
-                                public void onSuccess(String sign) {
-                                    handleApproveSign(wemix_approveurl,payconfirmurl,sign,wemix_contract,useraddress,wallet_nonce,wemix_fee,wemix_column,orderid);
-                                }
-
-                                @Override
-                                public void onError(String msg) {
-                                    showDia(msg,PromptDialog.PAY_WALLET_FAILED,false);
-                                }
-                            });
+//                            WemixUtil.getInstance().sign(PayActivity.this, useraddress, wemix_approvedhash, new WemixSignCallback() {
+//                                @Override
+//                                public void onSuccess(String sign) {
+//                                    handleApproveSign(wemix_approveurl,payconfirmurl,sign,wemix_contract,useraddress,wallet_nonce,wemix_fee,wemix_column,orderid);
+//                                }
+//
+//                                @Override
+//                                public void onError(String msg) {
+//                                    showDia(msg,PromptDialog.PAY_WALLET_FAILED,false);
+//                                }
+//                            });
                         }
                     }
                 });
@@ -450,18 +450,18 @@ public class PayActivity extends Activity implements View.OnClickListener {
     }
 
     private void wemixPay(String contract,String useraddress,String url,String column,String nonce,String fee,String orderid, String hash){
-        WemixUtil.getInstance().sign(PayActivity.this, useraddress, hash, new WemixSignCallback() {
-            @Override
-            public void onSuccess(String sign) {
-                System.out.println("sign---"+sign);
-                handleWemixPayParam(url,sign,contract,useraddress,nonce,column,fee,orderid);
-            }
-
-            @Override
-            public void onError(String msg) {
-                showDia(msg,PromptDialog.PAY_WALLET_FAILED,false);
-            }
-        });
+//        WemixUtil.getInstance().sign(PayActivity.this, useraddress, hash, new WemixSignCallback() {
+//            @Override
+//            public void onSuccess(String sign) {
+//                System.out.println("sign---"+sign);
+//                handleWemixPayParam(url,sign,contract,useraddress,nonce,column,fee,orderid);
+//            }
+//
+//            @Override
+//            public void onError(String msg) {
+//                showDia(msg,PromptDialog.PAY_WALLET_FAILED,false);
+//            }
+//        });
     }
 
     private void handleWemixPayParam(String url,String sign,String contract,String useraddress,String nonce,String column,String fee,String orderid){

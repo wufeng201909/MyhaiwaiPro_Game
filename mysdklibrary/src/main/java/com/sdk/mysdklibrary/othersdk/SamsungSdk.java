@@ -3,7 +3,7 @@ package com.sdk.mysdklibrary.othersdk;
 import android.app.Activity;
 import android.text.TextUtils;
 
-import com.samsung.android.sdk.iap.lib.helper.HelperDefine;
+import com.samsung.android.sdk.iap.lib.constants.HelperDefine;
 import com.samsung.android.sdk.iap.lib.helper.IapHelper;
 import com.samsung.android.sdk.iap.lib.listener.OnConsumePurchasedItemsListener;
 import com.samsung.android.sdk.iap.lib.listener.OnGetOwnedListListener;
@@ -17,6 +17,7 @@ import com.sdk.mysdklibrary.MySdkApi;
 import com.sdk.mysdklibrary.Net.HttpUtils;
 import com.sdk.mysdklibrary.Tools.Configs;
 import com.sdk.mysdklibrary.Tools.PhoneTool;
+import com.sdk.mysdklibrary.Tools.ResourceUtil;
 import com.sdk.mysdklibrary.interfaces.PayConsumeCallback;
 
 import java.util.ArrayList;
@@ -27,15 +28,21 @@ public class SamsungSdk {
     private static IapHelper iapHelper;
 
     public static void initSDK(Activity act){
+        String isTest = ResourceUtil.getString(act, "otherSdk_test");
         iapHelper = IapHelper.getInstance(act);
-        iapHelper.setOperationMode(HelperDefine.OperationMode.OPERATION_MODE_PRODUCTION);
+        if("true".equals(isTest)){
+            iapHelper.setOperationMode(HelperDefine.OperationMode.OPERATION_MODE_TEST);
+        }
     }
     public static void paySDK(Activity activity, String orderId, final String paynotifyurl,String extra1,String extra2) {
         isResumeCheck = false;
         MyGamesImpl.getSharedPreferences().edit().putString("samsung_conf_url", paynotifyurl).apply();
         checkOwnedPurchases();
         System.out.println("start-pay-proId:"+extra1);
-        iapHelper.startPayment(extra1, orderId, new OnPaymentListener() {
+        String uid = MyGamesImpl.getSharedPreferences().getString("accountid","");
+        String accountId = TextUtils.isEmpty(uid)? PhoneTool.getIMEI(activity) :uid;
+        System.out.println("accountId-->"+accountId);
+        iapHelper.startPayment(extra1, accountId,orderId, new OnPaymentListener() {
             @Override
             public void onPayment(ErrorVo _errorVo, PurchaseVo _purchaseVO) {
                 if(_errorVo !=null) {
@@ -44,7 +51,7 @@ public class SamsungSdk {
                     if (code == IapHelper.IAP_ERROR_NONE) {
                         if (_purchaseVO != null) {
                             if(_purchaseVO.getIsConsumable()){
-                                String orderId = _purchaseVO.getPassThroughParam();
+                                String orderId = _purchaseVO.getObfuscatedProfileId();
                                 String proId = _purchaseVO.getItemId();
                                 String purchaseId = _purchaseVO.getPurchaseId();
                                 handlePurchase(orderId,proId,purchaseId);
@@ -70,7 +77,7 @@ public class SamsungSdk {
                         if(_ownedList !=null){
                             for(OwnedProductVo item : _ownedList){
                                 if(item.getIsConsumable()){
-                                    String orderId = item.getPassThroughParam();
+                                    String orderId = item.getObfuscatedProfileId();
                                     String proId = item.getItemId();
                                     String purchaseId = item.getPurchaseId();
                                     handlePurchase(orderId,proId,purchaseId);
@@ -97,7 +104,7 @@ public class SamsungSdk {
                     consumeOwnedPurchase(purchaseId);
                 } else {
                     PhoneTool.submitErrorEvent(Configs.getAppErrorCode(),"xm:"+ msg);
-                    System.out.println("consumePurchaseSDK--"+issuc+"--" + msg);
+                    System.out.println("consumePurchaseSDK--false" +"--" + msg);
                     if(MySdkApi.getMpaycallBack()!=null)
                         MySdkApi.getMpaycallBack().payFail(msg);
                 }

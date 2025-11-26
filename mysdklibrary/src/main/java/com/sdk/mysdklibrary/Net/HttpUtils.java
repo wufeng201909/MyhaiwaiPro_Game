@@ -2525,33 +2525,35 @@ public class HttpUtils {
 				String param = param_js.toString();
 				String result = HttpUtils.postMethod(Configs.accountserver+"gameparam=othersdkloginvalid", param, "utf-8");
 				MLog.a(result);
+				//extend传0表示不保存渠道登录信息,如雷电
+				if(!"0".equals(extend)){
+					JSONObject logindatajs = null;
+					try {
+						logindatajs = new JSONObject(result);
+						if ("0".equals(logindatajs.getString("code"))){
+							String accountid = logindatajs.getJSONObject("data").getJSONObject("account").getString("accountid");
+							String sessionid = logindatajs.getJSONObject("data").getJSONObject("account").getString("sessionid");
 
-				JSONObject logindatajs = null;
-				try {
-					logindatajs = new JSONObject(result);
-					if ("0".equals(logindatajs.getString("code"))){
-						String accountid = logindatajs.getJSONObject("data").getJSONObject("account").getString("accountid");
-						String sessionid = logindatajs.getJSONObject("data").getJSONObject("account").getString("sessionid");
+							//保存登录类型用于自动登录
+							MyGamesImpl.getSharedPreferences().edit().putString("myths_auto_type","othersdk").apply();
 
-						//保存登录类型用于自动登录
-						MyGamesImpl.getSharedPreferences().edit().putString("myths_auto_type","othersdk").apply();
-
-						MySdkApi.getLoginCallBack().loginSuccess(accountid,sessionid,"othersdk","");
-						//保存登录信息
-						MyApplication.getAppContext().getGameArgs().setAccount_id(accountid);
-						MyApplication.getAppContext().getGameArgs().setSession_id(sessionid);
-						MyGamesImpl.getSharedPreferences().edit().putString("accountid",accountid).apply();
-						String pub = FilesTool.getPublisherStringContent().split("sdk_")[0];
-						PhoneTool.submitSDKEvent("12",pub+" login success");
-						MyGamesImpl.getInstance().ADJSubmit(2,"");
-					}else{
+							MySdkApi.getLoginCallBack().loginSuccess(accountid,sessionid,"othersdk","");
+							//保存登录信息
+							MyApplication.getAppContext().getGameArgs().setAccount_id(accountid);
+							MyApplication.getAppContext().getGameArgs().setSession_id(sessionid);
+							MyGamesImpl.getSharedPreferences().edit().putString("accountid",accountid).apply();
+							String pub = FilesTool.getPublisherStringContent().split("sdk_")[0];
+							PhoneTool.submitSDKEvent("12",pub+" login success");
+							MyGamesImpl.getInstance().ADJSubmit(2,"");
+						}else{
+							PhoneTool.submitSDKEvent("13",result);
+							MySdkApi.getLoginCallBack().loginFail(logindatajs.getString("code"));
+						}
+					} catch (JSONException e) {
+						e.printStackTrace();
 						PhoneTool.submitSDKEvent("13",result);
-						MySdkApi.getLoginCallBack().loginFail(logindatajs.getString("code"));
+						MySdkApi.getLoginCallBack().loginFail("1005");
 					}
-				} catch (JSONException e) {
-					e.printStackTrace();
-					PhoneTool.submitSDKEvent("13",result);
-					MySdkApi.getLoginCallBack().loginFail("1005");
 				}
 				PhoneTool.disDialog();
 			}

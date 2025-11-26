@@ -79,6 +79,7 @@ import com.sdk.mysdklibrary.Tools.MLog;
 import com.sdk.mysdklibrary.Tools.PhoneTool;
 import com.sdk.mysdklibrary.Tools.ResourceUtil;
 import com.sdk.mysdklibrary.Tools.ToastUtils;
+import com.sdk.mysdklibrary.Tools.XfUtils;
 import com.sdk.mysdklibrary.activity.EmailLoginActivity;
 import com.sdk.mysdklibrary.activity.LoginActivity;
 import com.sdk.mysdklibrary.impl.WalletCallback;
@@ -635,6 +636,16 @@ public class MyGamesImpl {
     }
 
     public void autoLogin(Activity context) {
+        //初始化完之后自动调登录，测试用,这里第一次直接返回成功/
+        if(!TextUtils.isEmpty(XfUtils.getAutoUid())){
+            MySdkApi.getLoginCallBack().loginSuccess(XfUtils.getAutoUid(),XfUtils.getAutoToken(),XfUtils.getAutoAcctype(),XfUtils.getAutoFbid());
+            XfUtils.setAutoUid("");
+            XfUtils.setAutoToken("");
+            XfUtils.setAutoAcctype("");
+            XfUtils.setAutoFbid("");
+            return;
+        }
+
         SharedPreferences sharedPreferences = MyGamesImpl.getSharedPreferences();
         String type = sharedPreferences.getString("myths_auto_type", "");
 
@@ -1136,7 +1147,7 @@ public class MyGamesImpl {
             }
         }
 
-        WemixUtil.getInstance().login(context);
+//        WemixUtil.getInstance().login(context);
     }
 
     public void acclogin(Activity act, String name, String password) {
@@ -1533,7 +1544,7 @@ public class MyGamesImpl {
 
     //钱包初始化
     public void walletInit(){
-        WalletUtil.getInstance().walletInit(activity);
+//        WalletUtil.getInstance().walletInit(activity);
     }
 
     /**
@@ -1543,19 +1554,19 @@ public class MyGamesImpl {
      * @param onlyRequestLogin  是否只用于请求登录
      */
     public void connectWallet(WalletCallback callback, String chainId,boolean onlyRequestLogin){
-        WalletUtil.getInstance().connectWallet(callback,chainId,onlyRequestLogin);
+//        WalletUtil.getInstance().connectWallet(callback,chainId,onlyRequestLogin);
     }
     //钱包支付
     public void payWallet(String wallet_authData, String wallet_payData, String wallet_authTo, String wallet_payTo,String wallet_nonce){
-        WalletUtil.getInstance().payWallet(wallet_authData,wallet_payData,wallet_authTo,wallet_payTo,wallet_nonce);
+//        WalletUtil.getInstance().payWallet(wallet_authData,wallet_payData,wallet_authTo,wallet_payTo,wallet_nonce);
     }
     //钱包签名
     public void signWallet(String nonce){
-        WalletUtil.getInstance().signWallet(nonce);
+//        WalletUtil.getInstance().signWallet(nonce);
     }
 
     public void closeConnect(){
-        WalletUtil.getInstance().closeConnect();
+//        WalletUtil.getInstance().closeConnect();
     }
     public void closeConnectAndFresh(){
 //        if(wcutils!=null) wcutils.close();

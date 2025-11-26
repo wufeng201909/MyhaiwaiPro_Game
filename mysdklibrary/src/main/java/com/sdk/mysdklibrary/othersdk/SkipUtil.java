@@ -31,14 +31,15 @@ public class SkipUtil {
     private static HashMap<String, String> map = new HashMap<String, String>();
     private final static String gu_str = "com.sdk.mysdklibrary.othersdk.";
     static {
-        map.put("huaweisdk", gu_str + "HwSdk");
-        map.put("migamesdk", gu_str + "XmSdk");
-        map.put("rustoresdk",gu_str + "RustoreSdk");
-        map.put("appbazarsdk",gu_str + "AppBazarSdk");
-        map.put("samsungsdk",gu_str + "SamsungSdk");
-        map.put("catappultsdk",gu_str + "CatappultSdk");
-        map.put("puresdk",     gu_str + "PureSdk");
-        map.put("xiaoqisdk",     gu_str + "XqSdk");
+        map.put("huaweisdk",    gu_str + "HwSdk");
+        map.put("migamesdk",    gu_str + "XmSdk");
+        map.put("rustoresdk",   gu_str + "RustoreSdk");
+        map.put("appbazarsdk",  gu_str + "AppBazarSdk");
+        map.put("samsungsdk",   gu_str + "SamsungSdk");
+        map.put("catappultsdk", gu_str + "CatappultSdk");
+        map.put("puresdk",      gu_str + "PureSdk");
+        map.put("xiaoqisdk",    gu_str + "XqSdk");
+        map.put("leidiansdk",   gu_str + "LeidianSdk");
     }
     public static VkSdk getVkSdk(){
         return vkSdk;

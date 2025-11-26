@@ -12,26 +12,26 @@ import java.util.*
 @SuppressLint("SetTextI18n")
 class TextViewLogger() : Logger {
 
-    private val dateFormatter = SimpleDateFormat("mm:ss.SSS", Locale.US)
-
-    override fun debug(tag: String, parameters: String?) {
-        val time = dateFormatter.format(Date(System.currentTimeMillis()))
-        println("$time: Debug | $tag | $parameters\n")
-    }
-
-    override fun info(tag: String, parameters: String?) {
-        val time = dateFormatter.format(Date(System.currentTimeMillis()))
-        println("$time: Info  | $tag | $parameters\n")
-    }
-
-    override fun warning(tag: String, parameters: String?) {
-        val time = dateFormatter.format(Date(System.currentTimeMillis()))
-        println("$time: WARN  | $tag | $parameters\n")
-    }
-
-    override fun error(tag: String, parameters: String?) {
-        val time = dateFormatter.format(Date(System.currentTimeMillis()))
-        println("$time: ERROR | $tag | $parameters\n")
-    }
+//    private val dateFormatter = SimpleDateFormat("mm:ss.SSS", Locale.US)
+//
+//    override fun debug(tag: String, parameters: String?) {
+//        val time = dateFormatter.format(Date(System.currentTimeMillis()))
+//        println("$time: Debug | $tag | $parameters\n")
+//    }
+//
+//    override fun info(tag: String, parameters: String?) {
+//        val time = dateFormatter.format(Date(System.currentTimeMillis()))
+//        println("$time: Info  | $tag | $parameters\n")
+//    }
+//
+//    override fun warning(tag: String, parameters: String?) {
+//        val time = dateFormatter.format(Date(System.currentTimeMillis()))
+//        println("$time: WARN  | $tag | $parameters\n")
+//    }
+//
+//    override fun error(tag: String, parameters: String?) {
+//        val time = dateFormatter.format(Date(System.currentTimeMillis()))
+//        println("$time: ERROR | $tag | $parameters\n")
+//    }
 
 }

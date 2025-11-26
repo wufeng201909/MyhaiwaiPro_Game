@@ -5,11 +5,15 @@ import android.app.Application
 import android.content.Context
 import androidx.activity.ComponentActivity
 import androidx.activity.result.ActivityResultLauncher
+import androidx.collection.arrayMapOf
+import com.google.android.gms.common.util.CollectionUtils
 import com.sdk.mysdklibrary.Net.HttpUtils
 import com.vk.api.sdk.VK
 import com.vk.api.sdk.VKTokenExpiredHandler
 import com.vk.api.sdk.auth.VKAuthenticationResult
 import com.vk.api.sdk.auth.VKScope
+import java.sql.DriverManager.println
+import java.util.Collections
 
 class VkSdk {
     private lateinit var _con: Context
@@ -80,9 +84,7 @@ class VkSdk {
     }
 
     fun login(act: Activity){
-        authLauncher.launch(arrayListOf())
-//        authLauncher.launch(arrayListOf(VKScope.PHONE, VKScope.EMAIL))
-//        VkFastLoginButton(act).showFastLoginDialog(null)
+        authLauncher.launch(null)
     }
 
     fun onDestroy(){

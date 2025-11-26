@@ -35,8 +35,8 @@ android {
     useLibrary 'org.apache.http.legacy'
 
     compileOptions {
-        sourceCompatibility = 1.8
-        targetCompatibility = 1.8
+        sourceCompatibility = 11
+        targetCompatibility = 11
     }
 }
 
@@ -47,7 +47,7 @@ dependencies {
     //只编译用到，给游戏时提供全部完整的aar
     compileOnly fileTree(dir: '../MyOtherLib', include: ['*.jar','*.aar'])
     compileOnly project(':mylibrary_huawei')
-    compileOnly project(':IAP6Helper')
+//    compileOnly project(':IAP6Helper')//旧版
 //    implementation 'com.android.support:support-v4:28.0.0'
 //    implementation 'com.android.support:appcompat-v7:28.0.0'
 //    implementation 'com.android.support:cardview-v7:28.0.0'
@@ -77,11 +77,11 @@ dependencies {
 //    implementation 'com.appsflyer:af-android-sdk:6.4.0'
 
     implementation platform('com.google.firebase:firebase-bom:29.0.4')
-    implementation 'com.google.firebase:firebase-analytics'
-    implementation 'com.google.firebase:firebase-auth:17.0.0'
-    implementation 'com.google.firebase:firebase-auth'
-    implementation 'com.google.firebase:firebase-messaging'
-    implementation 'com.google.firebase:firebase-inappmessaging-display'
+    api 'com.google.firebase:firebase-analytics'
+    api 'com.google.firebase:firebase-auth:17.0.0'
+    api 'com.google.firebase:firebase-auth'
+    api 'com.google.firebase:firebase-messaging'
+    api 'com.google.firebase:firebase-inappmessaging-display'
 //    implementation 'com.google.firebase:firebase-crashlytics-buildtools:2.8.1'
 
     //HONOR
@@ -124,14 +124,19 @@ dependencies {
     implementation("com.walletconnect:sign")
     implementation("com.walletconnect:auth")
 
-    //rustore
+    //rustore-old
     implementation 'ru.rustore.sdk:billingclient:9.1.0'
+    //rustore-new
+//    implementation(platform("ru.rustore.sdk:bom:2025.08.01"))
+//    implementation("ru.rustore.sdk:pay")
 
     //Catappult Billing SDK
     implementation 'io.catappult:android-appcoins-billing:0.8.0.3'
 
     //apkpure
     implementation 'com.vgamepop:asdk:1.0.4.49'
+    //雷电
+    api 'com.ld.android:ld-sdk:3.0.7'
 
     //小七
 //    implementation 'io.github.x7sy-sm:x7sdk-androidx:8.10.2'

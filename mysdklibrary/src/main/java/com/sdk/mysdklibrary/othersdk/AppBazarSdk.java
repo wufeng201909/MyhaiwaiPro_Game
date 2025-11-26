@@ -13,6 +13,8 @@ import com.sdk.mysdklibrary.Tools.Configs;
 import com.sdk.mysdklibrary.Tools.PhoneTool;
 import com.sdk.mysdklibrary.interfaces.PayConsumeCallback;
 
+import org.web3j.utils.Convert;
+
 import java.util.Collections;
 
 import kotlin.Unit;
